@@ -1,0 +1,58 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+venv/
+.venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Machine Learning
+*.pkl
+*.joblib
+*.model
+models/
+checkpoints/
+
+# Data files (do not upload raw datasets)
+*.csv
+*.parquet
+*.xlsx
+*.jsonl
+
+# Node.js / React
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+.cache/
