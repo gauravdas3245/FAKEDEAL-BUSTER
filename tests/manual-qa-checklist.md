@@ -4,7 +4,7 @@
 **Project:** FakeDeal Buster — Sale-Day Artificial Discount & Price Scam Detector  
 **Institution:** Scholar Institute of Technology and Management (SITM), Guwahati  
 **Role:** Data Preparation Analyst & QA Support  
-**Target Fixture:** [tests/fixtures/qa_scenarios.json](file:///C:/Users/phuko/Documents/FAKEDEAL-BUSTER/tests/fixtures/qa_scenarios.json)  
+**Target Fixture:** [fixtures/qa_scenarios.json](fixtures/qa_scenarios.json)  
 **Status:** APPROVED FOR MANUAL & AUTOMATED QA TESTING  
 
 ---
@@ -33,9 +33,10 @@ flowchart TD
 ```
 
 > [!CAUTION]
-> **Testing Boundary Rule:**  
+> **Testing Boundary & Provisional Scoring Rule:**  
 > The tests in **Part A** verify that software functions correctly without crashing, violating types, corrupting math, or allowing invalid states.  
-> **Synthetic QA fixtures do NOT establish machine learning fraud detection accuracy or operational scam-detection performance (Part B).**
+> 1. **Synthetic Scope Boundary:** Synthetic QA fixtures **do NOT** evaluate machine learning fraud detection accuracy, true-positive rates, or operational scam-detection performance (Part B).  
+> 2. **Provisional Prototype Scoring:** All reported FDI values and risk tier assignments represent **illustrative prototype calculations using synthetic inputs** and provisional heuristic thresholds. In live inference, requests lacking required fields or sufficient historical depth ($N < 30$) return **`INSUFFICIENT_INPUTS`** rather than generating a risk tier.
 
 ---
 
@@ -55,13 +56,13 @@ flowchart TD
 
 - [ ] **TC-02: Genuine Price Markdown Scoring**
   - **Scenario Reference:** `QA-SCN-03` (Record count: 31)
-  - **Test Objective:** Verify that a legitimate price reduction ($P = 75.00$ vs baseline $100.00$) produces a low Fake Discount Index (FDI).
+  - **Test Objective:** Verify that a legitimate price reduction ($P = 75.00$ vs baseline $100.00$) produces a low illustrative Fake Discount Index (FDI).
   - **Input Data:** Evaluation record from `QA-SCN-03` (`price: 75.00`, `original_price: 120.00`, `discount_pct: 37.50`).
   - **Expected Outcome:**
     - `real_discount_30d == 25.00`
     - `discount_inflation_gap == 12.50`
-    - `fdi_score == 8.75`
-    - `fdi_risk_tier == "Low Risk"`
+    - `fdi_score == 8.75` (illustrative prototype score)
+    - `fdi_risk_tier == "Low Risk"` (provisional heuristic tier)
   - **Pass Criteria:** Software evaluates successfully; score equals `8.75`; status is `SUCCESS_EVALUATED`.
 
 ---
@@ -74,7 +75,7 @@ flowchart TD
   - **Input Data:** 5 records from `QA-SCN-05` (`P_TEST_005`, `walmart`, `2024-01-01` to `2024-01-05`).
   - **Expected Outcome:**
     - System rejects FDI score generation.
-    - Status code / flag: `NEEDS_MORE_DATA`.
+    - Status code / flag: `INSUFFICIENT_INPUTS` (or `NEEDS_MORE_DATA`).
     - Error message: `INSUFFICIENT_HISTORY_N_LESS_THAN_30` (or `...LESS_THAN_14`).
     - FDI score is `null` (not 0.00 or crash).
   - **Pass Criteria:** No unhandled division-by-zero or NaN in response payload.
@@ -85,7 +86,7 @@ flowchart TD
   - **Input Data:** 15 records from `QA-SCN-06` with 14-day gap (`2024-01-11` to `2024-01-24` missing).
   - **Expected Outcome:**
     - Time-series preprocessor detects $\Delta t = 15 \text{ days} > 1 \text{ day}$.
-    - Status code: `NEEDS_MORE_DATA`.
+    - Status code: `INSUFFICIENT_INPUTS` / `NEEDS_MORE_DATA`.
     - Error code: `TIME_SERIES_DISCONTINUITY_CALENDAR_GAP`.
   - **Pass Criteria:** Software halts scoring on staled series and flags discontinuity.
 
@@ -149,7 +150,7 @@ flowchart TD
     - `SCN09_REC_01`: `price = null`
     - `SCN09_REC_02`: `original_price = null`
     - `SCN09_REC_03`: `timestamp = null`
-  - **Expected Outcome:** API returns HTTP 422 / `VALIDATION_ERROR` with specific field identified (`MISSING_MANDATORY_FIELD_<NAME>`).
+  - **Expected Outcome:** API returns HTTP 422 / `INSUFFICIENT_INPUTS` / `VALIDATION_ERROR` with specific field identified (`MISSING_MANDATORY_FIELD_<NAME>`).
   - **Pass Criteria:** Zero uncaught `TypeError` or `AttributeError` exceptions in server log.
 
 ---
@@ -182,8 +183,8 @@ flowchart TD
     - `ratio_to_30d_avg == 1.1500`
     - `real_discount_30d == 0.00`
     - `discount_inflation_gap == 23.33`
-    - `fdi_score == 70.83`
-    - `fdi_risk_tier == "High Risk"`
+    - `fdi_score == 70.83` (illustrative prototype score)
+    - `fdi_risk_tier == "High Risk"` (provisional heuristic tier)
   - **Pass Criteria:** Correct high-risk classification reflecting price hike.
 
 - [ ] **TC-12: Reference MSRP Inflation Detection**
@@ -193,8 +194,8 @@ flowchart TD
   - **Expected Calculations:**
     - `msrp_inflation_ratio == 2.5000`
     - `fdi_sub_msrp_inflation == 100.00` (saturated)
-    - `fdi_score == 70.00`
-    - `fdi_risk_tier == "High Risk"`
+    - `fdi_score == 70.00` (illustrative prototype score)
+    - `fdi_risk_tier == "High Risk"` (provisional heuristic tier)
   - **Pass Criteria:** Correct identification of MSRP inflation anchor scam.
 
 ---
@@ -205,8 +206,8 @@ flowchart TD
 |---|---|---|---|:---:|---|---|
 | **TC-01** | QA-SCN-01 | Baseline 30d Average = 100.00 | | | | |
 | **TC-02** | QA-SCN-03 | Legitimate Markdown FDI = 8.75 | | | | |
-| **TC-03** | QA-SCN-05 | N=5 Rejection (`NEEDS_MORE_DATA`) | | | | |
-| **TC-04** | QA-SCN-06 | 14-Day Gap (`NEEDS_MORE_DATA`) | | | | |
+| **TC-03** | QA-SCN-05 | N=5 Rejection (`INSUFFICIENT_INPUTS`) | | | | |
+| **TC-04** | QA-SCN-06 | 14-Day Gap (`INSUFFICIENT_INPUTS`) | | | | |
 | **TC-05** | QA-SCN-07 | Duplicate Key (`INVALID_INPUT_DUPLICATE`) | | | | |
 | **TC-06** | QA-SCN-08 | Price <= 0 (`VALIDATION_ERROR`) | | | | |
 | **TC-07** | QA-SCN-08 | MSRP <= 0 or P > MSRP (`VALIDATION_ERROR`) | | | | |

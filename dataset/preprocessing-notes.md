@@ -130,14 +130,33 @@ s_mean = clip((ratio_to_30d_avg - 0.85) / 0.30, 0.0, 1.0) * 100.0
 s_msrp = clip((msrp_inflation_ratio - 1.00) / 0.25, 0.0, 1.0) * 100.0
 s_anom = clip(0.60 * (price_spike_flag * 100.0) + 0.40 * (recent_7d_peak_ratio / 0.20 * 100.0), 0.0, 100.0)
 
-# 3. Proposed Composite FDI Output (2 Columns)
+# 3. Illustrative Composite FDI Prototype Scoring (2 Columns)
+# All calculated FDI scores represent illustrative prototype calculations evaluated on synthetic inputs.
+# Thresholds (>=80 Critical, >=60 High, >=30 Moderate, <30 Low) are provisional heuristic bands.
+# In live inference, uncomputable records or missing required inputs return INSUFFICIENT_INPUTS.
 fdi_score = round(clip(0.35 * s_gap + 0.30 * s_mean + 0.20 * s_msrp + 0.15 * s_anom, 0.0, 100.0), 2)
-# fdi_risk_tier assigned based on: >=80 Critical, >=60 High, >=30 Moderate, <30 Low
+if fdi_score >= 80.0:
+    fdi_risk_tier = "Critical Risk"
+elif fdi_score >= 60.0:
+    fdi_risk_tier = "High Risk"
+elif fdi_score >= 30.0:
+    fdi_risk_tier = "Moderate Risk"
+else:
+    fdi_risk_tier = "Low Risk" 
 ```
 
-### Critical Feature Audits:
-1. **`price_volatility_30d`:** Verified as an **original raw column (Column #33)**, already normalized as $\sigma_{30} / \mu_{30}$ (coefficient of variation). The pipeline uses it directly to prevent double normalization.
-2. **`recent_7d_peak_ratio`:** Tracks preceding prices ($t-6$ to $t$). Labeled neutrally to reflect recent price elevation rather than asserting seller intent.
+### Feature Architecture & Canonical Isolation Forest Dimensions:
+1. **The Four Canonical Isolation Forest Features:**
+   - **`ratio_to_30d_avg`:** Relative price level compared to the trailing 30-day mean ($P_t / \mu_{30}$).
+   - **`ratio_to_30d_max`:** Position relative to the trailing 30-day peak ($P_t / P_{\text{max},30}$).
+   - **`msrp_inflation_ratio`:** Stated reference price relative to the 52-week trailing peak ($\text{original\_price} / P_{\text{max},52}$).
+   - **`discount_inflation_gap`:** Advertised nominal discount minus real 30-day economic discount ($\text{discount\_pct} - \text{real\_discount\_30d}$).
+2. **Supplementary Prototype Dimensions:**
+   - **`price_volatility_30d`:** Original raw column (Column #33), representing baseline coefficient of variation ($\sigma_{30} / \mu_{30}$). Used directly to prevent double normalization.
+   - **`recent_7d_peak_ratio`:** Pre-promotional price ramp indicator ($(P_{\text{max},7} - \mu_{30}) / \mu_{30}$).
+3. **59-Column Schema Structure:**
+   - **46 Raw Original Columns:** Columns 1–46 from Kaggle dataset.
+   - **13 Prototype Engineered Columns:** 6 continuous pricing dimensions, 4 provisional FDI sub-scores, 2 composite scoring outputs, and 1 evaluation tracking column.
 
 ---
 

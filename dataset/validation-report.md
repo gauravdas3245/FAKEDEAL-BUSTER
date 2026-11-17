@@ -25,7 +25,8 @@ All findings replace earlier placeholder "Pending" entries with **verified empir
 |---|---|---|
 | **Total Rows (Census)** | **25,606,940** | Full streaming census across all raw splits (`ecommerce_train` + `val` + `test`). |
 | **Total Raw Columns** | **46** | Verified against CSV headers and `metadata.json` (100% match). |
-| **Total Prototype Columns** | **59** | 46 original + 13 added features/metadata in prototype evaluation samples. |
+| **Total Prototype Columns** | **59** | 46 raw + 13 prototype engineered features/metadata (including 4 canonical Isolation Forest features). |
+| **Dataset Size Footprint** | **24.74 GB** (23.04 GiB) | Total extracted CSV volume (24,740,253,212 bytes); compressed ZIP is 4.48 GB (4.17 GiB); `ecommerce_processed.csv` alone is 7.73 GB (7.19 GiB). |
 | **Date Range Covered** | **2023-01-01 to 2024-12-30** | Exactly 730 consecutive calendar days (2 full years). |
 | **Unique Catalog Products** | **10,000** | Documented catalog-level items; 9,980 observed in 73-day validation window. |
 | **E-Commerce Platforms (5)** | `amazon`, `bestbuy`, `ebay`, `flipkart`, `walmart` | Architectural target: ~20% uniform distribution. *(See Section 2.2 for exact counts).* |

@@ -11,10 +11,10 @@
 ### 1.1 Verified Dataset Scope
 This data dictionary documents the complete schema for the *E-Commerce Product Price Tracker Dataset* (Amith Nair, Kaggle) utilized in the **FakeDeal Buster** academic project. It covers all 25,606,940 raw observation records across two full years (`2023-01-01` to `2024-12-30`) and details the 13 feature additions introduced during prototype feature engineering.
 
-### 1.2 Licence Governance (Documented Discrepancy)
-- **Observed Physical Archive Licence:** Inspection of `LICENSE.txt` and `README.md` at `C:\End Sem Project\archive (1)` confirms the official text is **CC0 1.0 Universal (Public Domain Dedication)**.
-- **Repository Record:** Earlier project documentation (`README.md`, `dataset/README.md`, `docs/dataset-source.md`) noted **Kaggle Open License / CC BY-SA 4.0 (as confirmed by the project faculty mentor)**.
-- **Status:** **Pending Faculty Mentor Harmonization.** Both licenses permit academic research, but CC0 1.0 Universal is the physical text in the downloaded archive. The official repository record has not been altered pending formal faculty direction.
+### 1.2 Licence Harmonization Status
+- **Observed Archive Licence:** Inspection of `LICENSE.txt` and `README.md` within the downloaded Kaggle archive confirms the text declares **CC0 1.0 Universal (Public Domain Dedication)**.
+- **Preliminary Project Documentation:** Initial repository documentation referenced **Kaggle Open License / CC BY-SA 4.0**.
+- **Harmonization Status:** **Pending Formal Faculty Mentor Reconciliation.** Neither licence has been confirmed as authoritative over the other. Both licences grant permission for academic research, analysis, and educational publication. Until formal direction is issued by the faculty mentor, the licensing status is marked as pending harmonization without unilateral confirmation.
 
 ---
 
@@ -118,12 +118,24 @@ All sub-scores are scaled from $0.0$ to $100.0$ and represent an **experimental 
 
 ## 4. Isolation Forest Feature Space ($\mathbf{X}_{\text{IF}}$)
 
-The primary unsupervised Isolation Forest model is trained **strictly on 6 continuous dimensions**:
-$$\mathbf{X}_{\text{IF}} = [\text{ratio\_to\_30d\_avg}, \text{ratio\_to\_30d\_max}, \text{msrp\_inflation\_ratio}, \text{discount\_inflation_gap}, \text{price\_volatility\_30d}, \text{recent\_7d\_peak\_ratio}]$$
+The unsupervised anomaly detection architecture distinguishes between the core canonical anomaly vector and supplementary volatility dimensions:
+
+### 4.1 The Four Canonical Isolation Forest Features
+The primary multivariate pricing anomaly subspace is defined by **four canonical pricing features**:
+1. **`ratio_to_30d_avg`:** Relative price level compared to the trailing 30-day mean ($P_t / \mu_{30}$). Identifies price elevation above recent reality.
+2. **`ratio_to_30d_max`:** Position relative to the trailing 30-day peak ($P_t / P_{\text{max},30}$). Detects price spikes setting new monthly highs.
+3. **`msrp_inflation_ratio`:** Stated reference price relative to the 52-week trailing peak ($\text{original\_price} / P_{\text{max},52}$). Isolates fictitious reference anchor markup.
+4. **`discount_inflation_gap`:** Advertised nominal discount minus real 30-day economic discount ($\text{discount\_pct} - \text{real\_discount\_30d}$). Measures discount fabrication spread.
+
+### 4.2 Supplementary Dimensions in the Prototype Pipeline
+In `ml/prototype_pipeline.py`, the continuous input space is extended with two supplementary indicators to form a 6-dimensional evaluation vector:
+$$\mathbf{X}_{\text{IF}} = [\text{ratio\_to\_30d\_avg}, \text{ratio\_to\_30d\_max}, \text{msrp\_inflation\_ratio}, \text{discount\_inflation\_gap}, \text{price\_volatility\_30d}, \text{recent\_7d\_peak\_ratio}]$$
+- **`price_volatility_30d`:** Pre-existing raw column (Column #33), representing baseline coefficient of variation ($\sigma_{30} / \mu_{30}$).
+- **`recent_7d_peak_ratio`:** Pre-promotional price ramp indicator ($(P_{\text{max},7} - \mu_{30}) / \mu_{30}$).
 
 > [!NOTE]
 > **Definitive Feature Accounting:**
-> The 6 Isolation Forest inputs consist of **5 newly engineered continuous features** plus **1 pre-existing raw column** (`price_volatility_30d`). The FDI sub-scores, composite scores, categorical tiers, and `sample_source` are strictly excluded from the Isolation Forest input vector.
+> The full 59-column schema consists of **46 original raw attributes** + **13 prototype engineered columns** (6 continuous features, 4 provisional FDI sub-scores, 2 composite scoring outputs, and 1 evaluation tracking column). The FDI sub-scores, composite score, risk tiers, and sample labels are strictly excluded from Isolation Forest training to avoid data leakage.
 
 ---
 
