@@ -124,7 +124,7 @@ The generated `qa_scenarios.json` produces the verified SHA-256 checksum:
    - Offline test convention: `price_spike_flag = 0.0`.
    - Volatility convention: Constant historical price sequences yield `price_volatility_30d = 0.0000`.
    - Entity partitioning: Grouping strictly by `(product_id, platform)`.
-   - **Canonical Isolation Forest Features:** Highlights the 4 primary continuous dimensions (`ratio_to_30d_avg`, `ratio_to_30d_max`, `msrp_inflation_ratio`, `discount_inflation_gap`).
+   - **Canonical Isolation Forest Features & Prototype Dimensions:** Documents the 4 canonical conceptual features (`ratio_to_30d_avg`, `price_volatility_30d`, `msrp_to_30d_avg`, `recent_7d_surge`), recording the two unresolved discrepancies against prototype code (`msrp_inflation_ratio` and `recent_7d_peak_ratio`). Note that `ml/prototype_pipeline.py` currently fits on 6 continuous dimensions (`ratio_to_30d_avg`, `ratio_to_30d_max`, `msrp_inflation_ratio`, `real_discount_30d`, `discount_inflation_gap`, `recent_7d_peak_ratio`).
 
 2. **Proposed QA Contracts (Scenarios 5, 6, 7, 8, 9):**
    - Represent mandatory data engineering requirements for Rahul Amin's incoming backend API validation layer.

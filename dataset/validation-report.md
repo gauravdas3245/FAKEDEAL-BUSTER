@@ -25,8 +25,8 @@ All findings replace earlier placeholder "Pending" entries with **verified empir
 |---|---|---|
 | **Total Rows (Census)** | **25,606,940** | Full streaming census across all raw splits (`ecommerce_train` + `val` + `test`). |
 | **Total Raw Columns** | **46** | Verified against CSV headers and `metadata.json` (100% match). |
-| **Total Prototype Columns** | **59** | 46 raw + 13 prototype engineered features/metadata (including 4 canonical Isolation Forest features). |
-| **Dataset Size Footprint** | **24.74 GB** (23.04 GiB) | Total extracted CSV volume (24,740,253,212 bytes); compressed ZIP is 4.48 GB (4.17 GiB); `ecommerce_processed.csv` alone is 7.73 GB (7.19 GiB). |
+| **Total Prototype Columns** | **59** | 46 raw + 13 prototype engineered features/metadata (including column #47 `sample_source`, 6 continuous features, 4 subscores, `fdi_score`, `fdi_risk_tier`). Note: `evaluation_timestamp` is absent. |
+| **Dataset Size Footprint** | **24.74 GB** (23.04 GiB) | Total extracted CSV volume: 24,740,230,399 bytes (24.7402 GB / 23.0411 GiB); full extracted directory footprint (11 items): 24,740,253,212 bytes; compressed archive (`archive (1).zip`): 4,479,917,715 bytes (4.48 GB / 4.17 GiB); `ecommerce_processed.csv` alone: 8,266,972,621 bytes (8.27 GB / 7.70 GiB). |
 | **Date Range Covered** | **2023-01-01 to 2024-12-30** | Exactly 730 consecutive calendar days (2 full years). |
 | **Unique Catalog Products** | **10,000** | Documented catalog-level items; 9,980 observed in 73-day validation window. |
 | **E-Commerce Platforms (5)** | `amazon`, `bestbuy`, `ebay`, `flipkart`, `walmart` | Architectural target: ~20% uniform distribution. *(See Section 2.2 for exact counts).* |
@@ -46,8 +46,9 @@ All findings replace earlier placeholder "Pending" entries with **verified empir
 | **Anomalies Subset** | `data/subsets/ecommerce_anomalies.csv` | 15,853,671 B | 15.85 MB | 15.12 MiB | 48,554 | 0.19% | 2023-01-01 to 2024-12-30 (`price_spike_flag == 1`) |
 | **Forecast Subset** | `data/subsets/ecommerce_forecast.csv` | 8,190,424,833 B | 8.19 GB | 7.63 GiB | 25,356,940 | 99.02% | 2023-01-01 to 2024-12-23 (ends 7d early) |
 | **Recommendation** | `data/subsets/ecommerce_recommendation.csv` | 5,780 B | 5.78 KB | 5.64 KiB | 100 | — | Catalog summary (14 columns) |
-| **Total Extracted** | All CSV Files Combined | 24,740,230,399 B | 24.74 GB | 23.04 GiB | — | — | — |
-| **Compressed Archive** | `archive (1).zip` | 4,475,346,654 B | 4.48 GB | 4.17 GiB | — | — | — |
+| **Total Extracted (CSV)** | All 7 CSV Data Files Combined | 24,740,230,399 B | 24.74 GB | 23.04 GiB | — | — | — |
+| **Extracted Directory** | Full Extracted Footprint (11 items) | 24,740,253,212 B | 24.74 GB | 23.04 GiB | — | — | — |
+| **Compressed Archive** | `archive (1).zip` | 4,479,917,715 B | 4.48 GB | 4.17 GiB | — | — | — |
 
 ---
 
@@ -130,7 +131,11 @@ An exhaustive census across all 25,606,940 records yielded critical findings reg
 
 ---
 
-## 5. Prototype Dataset Validation & Proposed FDI Results
+## 5. Prototype Dataset Validation & Illustrative FDI Results
+
+> [!NOTE]
+> **Provisional Prototype Scoring Specification:**  
+> All reported FDI scores, distributions, and risk tier assignments (Low, Moderate, High, Critical Risk) represent **illustrative prototype calculations using synthetic offline inputs** and heuristic weighting formulas. The FDI risk thresholds (Low $< 30$, Moderate $30–59$, High $60–79$, Critical $\ge 80$) are provisional and subject to faculty and team review. In live inference, inputs lacking mandatory fields or sufficient historical depth ($N < 30$) return **`INSUFFICIENT_INPUTS`** (under the proposed backend API contract) rather than generating an FDI score.
 
 ### 5.1 Dataset Composition & Disjointness Audit
 
@@ -163,7 +168,16 @@ An exhaustive census across all 25,606,940 records yielded critical findings reg
 
 ## 6. Unsupervised Isolation Forest Benchmark
 
-The primary Isolation Forest was fitted **strictly on the 80,000 natural training rows** across the 6 continuous engineered features:
+The prototype Isolation Forest in `ml/prototype_pipeline.py` was fitted **strictly on the 80,000 natural training rows** across 6 continuous engineered features (`ratio_to_30d_avg`, `ratio_to_30d_max`, `msrp_inflation_ratio`, `real_discount_30d`, `discount_inflation_gap`, `recent_7d_peak_ratio`).
+
+> [!NOTE]
+> **Isolation Forest Feature Alignment & Discrepancy Tracking:**  
+> While the prototype pipeline trains on the 6 continuous dimensions listed above, conceptual project specifications define **4 Canonical Isolation Forest Features**:
+> 1. `ratio_to_30d_avg` (Exact match: implemented in code lines 41, 82).
+> 2. `price_volatility_30d` (Exact match: raw column #33, implemented in code line 45).
+> 3. `msrp_to_30d_avg` (*Unresolved discrepancy*: In prototype code line 84, the feature is `msrp_inflation_ratio = original_price / price_52w_max`. Feature `msrp_to_30d_avg` is not in the code or CSV headers).
+> 4. `recent_7d_surge` (*Unresolved discrepancy*: In prototype code line 87, the feature is `recent_7d_peak_ratio = (price_7d_max - price_30d_avg) / price_30d_avg`. The name `recent_7d_surge` is not in the code).
+> Both naming/definition discrepancies are formally recorded and flagged for resolution with Gaurav Das.
 
 | Evaluation Bench | Sample Size | Mean Anomaly Score | Outlier Prediction Rate | Assessment |
 |---|---|---|---|---|

@@ -49,8 +49,8 @@ C:\End Sem Project\archive (1)\
 │       └── ecommerce_recommendation.csv (        5,780 bytes |  5.78 KB dec|  5.64 KiB bin|        100 catalog summary rows)
 ```
 
-- **Total Extracted Dataset:** 24,740,230,399 bytes (24.74 GB decimal / 23.04 GiB binary).
-- **Compressed Zip Archive:** 4,475,346,654 bytes (4.48 GB decimal / 4.17 GiB binary).
+- **Total Extracted Dataset:** 24,740,230,399 bytes across 7 CSV data files (24.7402 GB decimal / 23.0411 GiB binary; 24,740,253,212 bytes across all 11 extracted directory items).
+- **Compressed Zip Archive:** 4,479,917,715 bytes (`archive (1).zip`: 4.48 GB decimal / 4.1722 GiB binary; reconciles earlier draft estimate of 4,475,346,654 bytes).
 - **Exact Split Arithmetic:** $20,450,474 \text{ (train)} + 2,560,694 \text{ (val)} + 2,595,772 \text{ (test)} = \mathbf{25,606,940 \text{ rows}}$.
 
 ---
@@ -145,18 +145,22 @@ else:
     fdi_risk_tier = "Low Risk" 
 ```
 
-### Feature Architecture & Canonical Isolation Forest Dimensions:
-1. **The Four Canonical Isolation Forest Features:**
-   - **`ratio_to_30d_avg`:** Relative price level compared to the trailing 30-day mean ($P_t / \mu_{30}$).
-   - **`ratio_to_30d_max`:** Position relative to the trailing 30-day peak ($P_t / P_{\text{max},30}$).
-   - **`msrp_inflation_ratio`:** Stated reference price relative to the 52-week trailing peak ($\text{original\_price} / P_{\text{max},52}$).
-   - **`discount_inflation_gap`:** Advertised nominal discount minus real 30-day economic discount ($\text{discount\_pct} - \text{real\_discount\_30d}$).
-2. **Supplementary Prototype Dimensions:**
-   - **`price_volatility_30d`:** Original raw column (Column #33), representing baseline coefficient of variation ($\sigma_{30} / \mu_{30}$). Used directly to prevent double normalization.
-   - **`recent_7d_peak_ratio`:** Pre-promotional price ramp indicator ($(P_{\text{max},7} - \mu_{30}) / \mu_{30}$).
-3. **59-Column Schema Structure:**
-   - **46 Raw Original Columns:** Columns 1–46 from Kaggle dataset.
-   - **13 Prototype Engineered Columns:** 6 continuous pricing dimensions, 4 provisional FDI sub-scores, 2 composite scoring outputs, and 1 evaluation tracking column.
+### Feature Architecture & Model Space Delineation:
+
+1. **Category A: 46 Raw Original Attributes:**
+   Columns 1–46 from the Kaggle dataset (`product_id` to `target_price_direction_7d`).
+2. **Category B: 13 Prototype Engineered Columns:**
+   6 continuous pricing dimensions, 4 provisional FDI sub-scores, 2 composite scoring outputs, and 1 sample metadata tracking column (`sample_source` verified at Column #47; `evaluation_timestamp` confirmed absent).
+3. **Category C: Four Canonical Isolation Forest Features (Verification & Status):**
+   - **`msrp_to_30d_avg`:** **UNRESOLVED DISCREPANCY.** Implemented in prototype as `msrp_inflation_ratio = original_price / price_52w_max`. The feature `msrp_to_30d_avg` (MSRP / 30-day average) does not exist in `ml/prototype_pipeline.py`. Marked UNRESOLVED pending Gaurav's confirmation.
+   - **`ratio_to_30d_avg`:** **VERIFIED IMPLEMENTED.** Present in `IF_FEATURES` (Line 41) as $P_t / \mu_{30}$.
+   - **`price_volatility_30d`:** **VERIFIED IMPLEMENTED.** Original raw column (Column #33), consumed directly in `IF_FEATURES` (Line 45).
+   - **`recent_7d_surge`:** **UNRESOLVED DISCREPANCY.** Implemented in prototype as `recent_7d_peak_ratio = (price_7d_max - price_30d_avg) / price_30d_avg`. The name `recent_7d_surge` does not exist in source code. Marked UNRESOLVED pending Gaurav's confirmation.
+   *(Note: Prototype pipeline `ml/prototype_pipeline.py#L40-47` currently fits Isolation Forest on 6 continuous dimensions: `ratio_to_30d_avg`, `ratio_to_30d_max`, `msrp_inflation_ratio`, `discount_inflation_gap`, `price_volatility_30d`, `recent_7d_peak_ratio`).*
+
+4. **Service Boundary Clarification (Prototype FDI vs. Backend Contracts):**
+   - **Existing Pipeline Behaviour:** `compute_features_and_fdi` expects precomputed floats and raises standard `KeyError`/`TypeError` exceptions if inputs are missing. FDI scores represent illustrative prototype evaluations using provisional heuristic thresholds.
+   - **Backend API Contract:** Responses such as `INSUFFICIENT_INPUTS`, `NEEDS_MORE_DATA`, and HTTP 422 are **PROPOSED QA TEST CONTRACTS** defined for future validation middleware, pending Rahul Amin's backend implementation in `backend/`.
 
 ---
 

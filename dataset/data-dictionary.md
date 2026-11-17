@@ -116,32 +116,58 @@ All sub-scores are scaled from $0.0$ to $100.0$ and represent an **experimental 
 
 ---
 
-## 4. Isolation Forest Feature Space ($\mathbf{X}_{\text{IF}}$)
+## 4. Feature Space & Classification Architecture
 
-The unsupervised anomaly detection architecture distinguishes between the core canonical anomaly vector and supplementary volatility dimensions:
+To establish strict engineering boundaries, all features are categorized into three distinct classes:
 
-### 4.1 The Four Canonical Isolation Forest Features
-The primary multivariate pricing anomaly subspace is defined by **four canonical pricing features**:
-1. **`ratio_to_30d_avg`:** Relative price level compared to the trailing 30-day mean ($P_t / \mu_{30}$). Identifies price elevation above recent reality.
-2. **`ratio_to_30d_max`:** Position relative to the trailing 30-day peak ($P_t / P_{\text{max},30}$). Detects price spikes setting new monthly highs.
-3. **`msrp_inflation_ratio`:** Stated reference price relative to the 52-week trailing peak ($\text{original\_price} / P_{\text{max},52}$). Isolates fictitious reference anchor markup.
-4. **`discount_inflation_gap`:** Advertised nominal discount minus real 30-day economic discount ($\text{discount\_pct} - \text{real\_discount\_30d}$). Measures discount fabrication spread.
+### Category A: Original Raw Dataset Attributes (46 Columns)
+The 46 columns verified in the original raw dataset CSV headers (`product_id`, `title`, `brand`, ..., `price_volatility_30d`, ..., `target_price_direction_7d`).
 
-### 4.2 Supplementary Dimensions in the Prototype Pipeline
-In `ml/prototype_pipeline.py`, the continuous input space is extended with two supplementary indicators to form a 6-dimensional evaluation vector:
-$$\mathbf{X}_{\text{IF}} = [\text{ratio\_to\_30d\_avg}, \text{ratio\_to\_30d\_max}, \text{msrp\_inflation\_ratio}, \text{discount\_inflation\_gap}, \text{price\_volatility\_30d}, \text{recent\_7d\_peak\_ratio}]$$
-- **`price_volatility_30d`:** Pre-existing raw column (Column #33), representing baseline coefficient of variation ($\sigma_{30} / \mu_{30}$).
-- **`recent_7d_peak_ratio`:** Pre-promotional price ramp indicator ($(P_{\text{max},7} - \mu_{30}) / \mu_{30}$).
+### Category B: Supplementary & Prototype Engineered Features (13 Columns)
+The 13 columns added by `ml/prototype_pipeline.py` to produce the 59-column prototype sample datasets:
+- **`sample_source` (Column #47):** Metadata tracking column (`natural_train`, `oversampled_train_anomaly`, `natural_val`, `natural_test`). *(Audit Confirmation: `evaluation_timestamp` does NOT exist in the output schema).*
+- **`ratio_to_30d_avg` (Column #48):** Ratio of current price to 30-day rolling average.
+- **`ratio_to_30d_max` (Column #49):** Ratio of current price to 30-day rolling maximum.
+- **`msrp_inflation_ratio` (Column #50):** Ratio of original MSRP to 52-week rolling maximum.
+- **`real_discount_30d` (Column #51):** True economic discount relative to 30-day average.
+- **`discount_inflation_gap` (Column #52):** Spread between advertised discount and real discount.
+- **`recent_7d_peak_ratio` (Column #53):** Pre-promotional price ramp indicator.
+- **`fdi_sub_gap`, `fdi_sub_mean_ratio`, `fdi_sub_msrp_inflation`, `fdi_sub_recent_anomaly` (Columns #54–57):** 4 provisional FDI sub-scores.
+- **`fdi_score`, `fdi_risk_tier` (Columns #58–59):** Composite Fake Discount Index score and provisional heuristic risk tier.
 
-> [!NOTE]
-> **Definitive Feature Accounting:**
-> The full 59-column schema consists of **46 original raw attributes** + **13 prototype engineered columns** (6 continuous features, 4 provisional FDI sub-scores, 2 composite scoring outputs, and 1 evaluation tracking column). The FDI sub-scores, composite score, risk tiers, and sample labels are strictly excluded from Isolation Forest training to avoid data leakage.
+### Category C: Four Canonical Isolation Forest Features (Verification & Status)
+
+The four canonical features specified for the target Isolation Forest anomaly detection model are evaluated below against the actual prototype implementation in `ml/prototype_pipeline.py`:
+
+| Canonical Feature Name | Implementation Status in `ml/prototype_pipeline.py` | Exact Formula in Code | Discrepancy Analysis & Status |
+|---|---|---|---|
+| **`msrp_to_30d_avg`** | **NOT IMPLEMENTED UNDER THIS NAME** | `msrp_inflation_ratio = msrp / safe_max52` (Line 84) | **UNRESOLVED DISCREPANCY:** The implemented pipeline uses `msrp_inflation_ratio` (MSRP / 52-week peak). The proposed feature `msrp_to_30d_avg` (MSRP / 30-day mean) does not exist in `ml/prototype_pipeline.py` or CSV headers. Marked UNRESOLVED pending Gaurav's confirmation. |
+| **`ratio_to_30d_avg`** | **VERIFIED IMPLEMENTED** | `ratio_to_30d_avg = price / safe_avg30` (Line 82) | **EXACT MATCH:** Present in `IF_FEATURES` (Line 41) and computed at Line 82. |
+| **`price_volatility_30d`** | **VERIFIED IMPLEMENTED** | Consumed directly from Column #33 (Line 74) | **EXACT MATCH:** Original raw column consumed directly in `IF_FEATURES` (Line 45). |
+| **`recent_7d_surge`** | **NOT IMPLEMENTED UNDER THIS NAME** | `recent_7d_peak_ratio = max(0.0, (max7 - avg30) / safe_avg30)` (Line 91) | **UNRESOLVED DISCREPANCY:** The implemented pipeline uses `recent_7d_peak_ratio` (Line 46, Line 91). The name `recent_7d_surge` does not exist in source code. Marked UNRESOLVED pending Gaurav's confirmation. |
+
+> [!IMPORTANT]
+> **Prototype Pipeline Implementation Notice:**  
+> In `ml/prototype_pipeline.py#L40-47`, the executable prototype currently fits Isolation Forest on **6 continuous dimensions**:  
+> `IF_FEATURES = ["ratio_to_30d_avg", "ratio_to_30d_max", "msrp_inflation_ratio", "discount_inflation_gap", "price_volatility_30d", "recent_7d_peak_ratio"]`.  
+> In strict accordance with execution rules, no ML source code has been altered. The canonical 4-feature specification and the prototype 6-feature vector remain clearly distinguished.
 
 ---
 
-## 5. Summary of Domain Entity Rules
+## 5. Domain Rules & Service Boundary Clarification
 
+### 5.1 Domain Entity Rules
 1. **`brand` Meaning:** Represents product manufacturing brand (e.g., Apple, Nike, Samsung). It is NOT a marketplace seller ID and cannot be penalized as a rogue merchant proxy.
 2. **`platform` Meaning:** Represents the marketplace site (Amazon, eBay, Walmart, Flipkart, BestBuy). Pricing comparisons reflect platform-level pricing policies.
 3. **`fake_discount_flag` Meaning:** Defunct indicator (100% zero). Cannot be used for supervised training.
+
+### 5.2 Existing ML/FDI Service Behaviour vs. Proposed Backend API Contract
+- **Existing ML Pipeline (`ml/prototype_pipeline.py`):**
+  - Function `compute_features_and_fdi` expects precomputed, valid float inputs for all 9 pricing fields.
+  - It contains zero history sufficiency checks ($N < 30$), zero calendar gap checks, and zero null validation.
+  - If nulls or non-numeric types are passed, standard Python `KeyError` or `TypeError` exceptions are raised.
+  - FDI score calculations represent **illustrative prototype evaluations on synthetic/sample inputs** using provisional heuristic thresholds.
+- **Backend API Contract (FastAPI `POST /analyze`):**
+  - Responses such as `INSUFFICIENT_INPUTS`, `NEEDS_MORE_DATA`, HTTP 422 Unprocessable Entity, or specific validation error codes (`INVALID_PRICE_ZERO`, `PRIMARY_KEY_COLLISION`) are **PROPOSED QA TEST CONTRACTS** defined for future integration.
+  - Because `backend/` currently contains only `backend/README.md` and no executable FastAPI endpoints exist, these validation behaviors are **pending confirmation upon Rahul Amin's backend package delivery**.
 4. **`price_spike_flag` Meaning:** Statistical anomaly indicator reflecting short-term volatility. Does not constitute verified fraud ground truth.
