@@ -1,67 +1,32 @@
-
-# Dataset Documentation
+# FakeDeal Buster — Dataset Documentation & Resources
 
 ## 1. Dataset Information
 
-**Dataset Name:** E-Commerce Product Price Tracker Dataset
+- **Dataset Name:** E-Commerce Product Price Tracker Dataset
+- **Author:** Amith Nair
+- **Source:** Kaggle
+- **Dataset Link:** https://www.kaggle.com/datasets/amith1707/e-commerce-product-price-tracker-dataset
+- **Licence Governance:** CC0 1.0 Universal (per physical archive `LICENSE.txt`) / Kaggle Open License / CC BY-SA 4.0 (as recorded in project documentation, pending faculty mentor harmonization).
 
-**Author:** Amith Nair
+## 2. Dataset Documentation Directory
 
-**Source:** Kaggle
+| Document | Purpose | Scope |
+|---|---|---|
+| [dataset/data-dictionary.md](file:///C:/Users/phuko/Documents/FAKEDEAL-BUSTER/dataset/data-dictionary.md) | Official production schema and data dictionary | 46 raw columns + 13 prototype engineered features (59 columns total) |
+| [dataset/validation-report.md](file:///C:/Users/phuko/Documents/FAKEDEAL-BUSTER/dataset/validation-report.md) | Comprehensive empirical quality and census validation report | 25,606,940 census records & split profile audits |
+| [dataset/preprocessing-notes.md](file:///C:/Users/phuko/Documents/FAKEDEAL-BUSTER/dataset/preprocessing-notes.md) | Data cleaning, chronological split methodology, and sampling strategy | Preprocessing methodology & feature engineering |
 
-**Dataset Link:** https://www.kaggle.com/datasets/amith1707/e-commerce-product-price-tracker-dataset
+## 3. Purpose and Characteristics
 
-**License:** Kaggle Open License / CC BY-SA 4.0 (as confirmed by the project faculty mentor)
+The dataset supports FakeDeal Buster by simulating daily retail price fluctuations across 2023–2024 to enable the study of price trends, discount inflation gaps, and reference price behavior.
 
-## 2. Purpose of the Dataset
+- **Total Observations:** 25,606,940 rows across 730 consecutive calendar days.
+- **Unique Catalog Products:** 10,000 unique catalog items.
+- **Marketplace Platforms (5):** `amazon`, `bestbuy`, `ebay`, `flipkart`, `walmart`.
+- **Main Categories (7):** `Electronics`, `Fashion`, `Gaming`, `Appliances`, `Books`, `Household`, `Sports`.
+- **Subcategories:** 35 distinct subcategories (5 per category).
 
-This dataset is used in FakeDeal Buster to study e-commerce product pricing patterns, discount percentages, and historical price behaviour.
+## 4. Storage and Access Rules
 
-It supports the development and evaluation of analytical methods for identifying potentially misleading artificial discounts.
-
-## 3. Dataset Characteristics
-
-According to the dataset documentation, it contains:
-
-- Approximately 25.6 million records.
-- Around 10,000 products.
-- Five e-commerce platforms.
-- Seven product categories.
-- Simulated daily price observations covering 2023–2024.
-
-The dataset is synthetic and represents simulated retail pricing behaviour. It does not represent verified real-world marketplace transactions.
-
-## 4. Data Usage in This Project
-
-The dataset will be used for:
-
-- Data inspection and quality analysis.
-- Data cleaning and preprocessing.
-- Product price and discount analysis.
-- Feature engineering.
-- Model development and evaluation, subject to label validation.
-- Historical price trend analysis, where sufficient observations are available.
-
-## 5. Important Data Considerations
-
-- Dataset labels must be inspected before supervised model training.
-- A label should not be treated as reliable ground truth without validation.
-- An unusual price pattern does not automatically prove fraudulent activity.
-- The full dataset is large and should be processed using memory-efficient methods.
-- Only the required processed data and project-related documentation should be stored in this repository.
-
-## 6. Data Access and Reproducibility
-
-The original dataset is hosted on Kaggle. Users should obtain it from the original source and follow the applicable licence terms.
-
-The raw dataset is not included in this GitHub repository because of its large size.
-
-## 7. Attribution
-
-E-Commerce Product Price Tracker Dataset by Amith Nair, hosted on Kaggle.
-
-Dataset source: https://www.kaggle.com/datasets/amith1707/e-commerce-product-price-tracker-dataset
-
-Accessed: 16-11-2026
-
-Licence information recorded as confirmed by the project faculty mentor: Kaggle Open License / CC BY-SA 4.0.
+- **Raw Dataset Exclusion:** Due to file size (24.74 GB extracted), raw dataset files are stored in external local directories and are strictly excluded from Git tracking via `.gitignore`.
+- **Processed Samples:** Only compact representative evaluation samples and synthetic QA fixtures are stored in this repository.

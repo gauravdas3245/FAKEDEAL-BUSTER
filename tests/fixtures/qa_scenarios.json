@@ -1,0 +1,3351 @@
+{
+  "metadata": {
+    "suite_name": "FakeDeal Buster Synthetic QA Fixture Suite",
+    "version": "1.0.0",
+    "generated_at": "2024-01-31T00:00:00Z",
+    "generator_script": "scripts/generate_qa_fixtures.py",
+    "role": "Data Preparation Analyst & QA Support",
+    "institution": "Scholar Institute of Technology and Management (SITM), Guwahati",
+    "total_scenarios": 10,
+    "total_records": 309,
+    "deterministic_seed": 42
+  },
+  "scenarios": [
+    {
+      "scenario_id": "QA-SCN-01",
+      "scenario_name": "Stable Normal Pricing",
+      "description": "Baseline stable product selling at regular price ($100.00) with authentic list MSRP ($120.00).",
+      "classification_status": "VERIFIED_PROTOTYPE_MATH",
+      "expected_software_behaviour": "SUCCESS_EVALUATED",
+      "expected_error": null,
+      "product_id": "P_TEST_001",
+      "platform": "amazon",
+      "record_count": 31,
+      "documented_context": {
+        "52_week_anchor_source": "Catalog inception selling price at t-180 was $120.00, validating price_52w_max = 120.00."
+      },
+      "precomputed_feature_inputs": {
+        "price_30d_avg": 100.0,
+        "price_30d_max": 100.0,
+        "price_52w_max": 120.0,
+        "price_7d_max": 100.0,
+        "price_volatility_30d": 0.0,
+        "price_spike_flag": 0.0
+      },
+      "evaluation_record": {
+        "record_id": "SCN01_EVAL_01",
+        "product_id": "P_TEST_001",
+        "platform": "amazon",
+        "timestamp": "2024-01-31T00:00:00",
+        "price": 100.0,
+        "original_price": 120.0,
+        "discount_pct": 16.67
+      },
+      "expected_calculations": {
+        "ratio_to_30d_avg": 1.0,
+        "ratio_to_30d_max": 1.0,
+        "msrp_inflation_ratio": 1.0,
+        "real_discount_30d": 0.0,
+        "discount_inflation_gap": 16.67,
+        "recent_7d_peak_ratio": 0.0,
+        "fdi_sub_gap": 33.34,
+        "fdi_sub_mean_ratio": 50.0,
+        "fdi_sub_msrp_inflation": 0.0,
+        "fdi_sub_recent_anomaly": 0.0,
+        "fdi_score": 26.67,
+        "fdi_risk_tier": "Low Risk"
+      },
+      "expected_risk_tier": "Low Risk",
+      "records": [
+        {
+          "record_id": "SCN01_HIST_01",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_02",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_03",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_04",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_05",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_06",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_07",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_08",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_09",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_10",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_11",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_12",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_13",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_14",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_15",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_16",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_17",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_18",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_19",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_20",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_21",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_22",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_23",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_24",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_25",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_26",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_27",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_28",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_29",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_HIST_30",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN01_EVAL_01",
+          "product_id": "P_TEST_001",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-02",
+      "scenario_name": "Current Price Above Historical Average (Artificial Discount Scam)",
+      "description": "Pre-sale price hiked to $115.00 and MSRP inflated to $150.00 claiming fictitious 23.33% discount.",
+      "classification_status": "VERIFIED_PROTOTYPE_MATH",
+      "expected_software_behaviour": "SUCCESS_EVALUATED",
+      "expected_error": null,
+      "product_id": "P_TEST_002",
+      "platform": "amazon",
+      "record_count": 31,
+      "documented_context": {
+        "52_week_anchor_source": "Catalog inception selling price at t-180 was $120.00. Current selling price of $115 exceeds 30-day baseline of $100."
+      },
+      "precomputed_feature_inputs": {
+        "price_30d_avg": 100.0,
+        "price_30d_max": 100.0,
+        "price_52w_max": 120.0,
+        "price_7d_max": 115.0,
+        "price_volatility_30d": 0.0,
+        "price_spike_flag": 0.0
+      },
+      "evaluation_record": {
+        "record_id": "SCN02_EVAL_01",
+        "product_id": "P_TEST_002",
+        "platform": "amazon",
+        "timestamp": "2024-01-31T00:00:00",
+        "price": 115.0,
+        "original_price": 150.0,
+        "discount_pct": 23.33
+      },
+      "expected_calculations": {
+        "ratio_to_30d_avg": 1.15,
+        "ratio_to_30d_max": 1.15,
+        "msrp_inflation_ratio": 1.25,
+        "real_discount_30d": 0.0,
+        "discount_inflation_gap": 23.33,
+        "recent_7d_peak_ratio": 0.15,
+        "fdi_sub_gap": 46.66,
+        "fdi_sub_mean_ratio": 100.0,
+        "fdi_sub_msrp_inflation": 100.0,
+        "fdi_sub_recent_anomaly": 30.0,
+        "fdi_score": 70.83,
+        "fdi_risk_tier": "High Risk"
+      },
+      "expected_risk_tier": "High Risk",
+      "records": [
+        {
+          "record_id": "SCN02_HIST_01",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_02",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_03",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_04",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_05",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_06",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_07",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_08",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_09",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_10",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_11",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_12",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_13",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_14",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_15",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_16",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_17",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_18",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_19",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_20",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_21",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_22",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_23",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_24",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_25",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_26",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_27",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_28",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_29",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_HIST_30",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN02_EVAL_01",
+          "product_id": "P_TEST_002",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 115.0,
+          "original_price": 150.0,
+          "discount_pct": 23.33
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-03",
+      "scenario_name": "Legitimate Deep Discount",
+      "description": "Legitimate price markdown from $100.00 down to $75.00 against authentic $120.00 MSRP anchor.",
+      "classification_status": "VERIFIED_PROTOTYPE_MATH",
+      "expected_software_behaviour": "SUCCESS_EVALUATED",
+      "expected_error": null,
+      "product_id": "P_TEST_003",
+      "platform": "amazon",
+      "record_count": 31,
+      "documented_context": {
+        "52_week_anchor_source": "Catalog inception selling price at t-180 was $120.00. Current selling price of $75 delivers genuine 25% savings against 30d baseline."
+      },
+      "precomputed_feature_inputs": {
+        "price_30d_avg": 100.0,
+        "price_30d_max": 100.0,
+        "price_52w_max": 120.0,
+        "price_7d_max": 100.0,
+        "price_volatility_30d": 0.0,
+        "price_spike_flag": 0.0
+      },
+      "evaluation_record": {
+        "record_id": "SCN03_EVAL_01",
+        "product_id": "P_TEST_003",
+        "platform": "amazon",
+        "timestamp": "2024-01-31T00:00:00",
+        "price": 75.0,
+        "original_price": 120.0,
+        "discount_pct": 37.5
+      },
+      "expected_calculations": {
+        "ratio_to_30d_avg": 0.75,
+        "ratio_to_30d_max": 0.75,
+        "msrp_inflation_ratio": 1.0,
+        "real_discount_30d": 25.0,
+        "discount_inflation_gap": 12.5,
+        "recent_7d_peak_ratio": 0.0,
+        "fdi_sub_gap": 25.0,
+        "fdi_sub_mean_ratio": 0.0,
+        "fdi_sub_msrp_inflation": 0.0,
+        "fdi_sub_recent_anomaly": 0.0,
+        "fdi_score": 8.75,
+        "fdi_risk_tier": "Low Risk"
+      },
+      "expected_risk_tier": "Low Risk",
+      "records": [
+        {
+          "record_id": "SCN03_HIST_01",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_02",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_03",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_04",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_05",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_06",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_07",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_08",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_09",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_10",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_11",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_12",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_13",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_14",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_15",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_16",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_17",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_18",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_19",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_20",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_21",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_22",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_23",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_24",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_25",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_26",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_27",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_28",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_29",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_HIST_30",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN03_EVAL_01",
+          "product_id": "P_TEST_003",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 75.0,
+          "original_price": 120.0,
+          "discount_pct": 37.5
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-04",
+      "scenario_name": "High Advertised Discount with Inflated MSRP Anchor",
+      "description": "Selling price unchanged at $100.00 while reference MSRP is artificially inflated from $100.00 to $250.00 to fabricate a 60% discount.",
+      "classification_status": "VERIFIED_PROTOTYPE_MATH",
+      "expected_software_behaviour": "SUCCESS_EVALUATED",
+      "expected_error": null,
+      "product_id": "P_TEST_004",
+      "platform": "walmart",
+      "record_count": 31,
+      "documented_context": {
+        "52_week_anchor_source": "52-week trailing maximum selling price was strictly $100.00. MSRP of $250.00 represents 150% reference price inflation."
+      },
+      "precomputed_feature_inputs": {
+        "price_30d_avg": 100.0,
+        "price_30d_max": 100.0,
+        "price_52w_max": 100.0,
+        "price_7d_max": 100.0,
+        "price_volatility_30d": 0.0,
+        "price_spike_flag": 0.0
+      },
+      "evaluation_record": {
+        "record_id": "SCN04_EVAL_01",
+        "product_id": "P_TEST_004",
+        "platform": "walmart",
+        "timestamp": "2024-01-31T00:00:00",
+        "price": 100.0,
+        "original_price": 250.0,
+        "discount_pct": 60.0
+      },
+      "expected_calculations": {
+        "ratio_to_30d_avg": 1.0,
+        "ratio_to_30d_max": 1.0,
+        "msrp_inflation_ratio": 2.5,
+        "real_discount_30d": 0.0,
+        "discount_inflation_gap": 60.0,
+        "recent_7d_peak_ratio": 0.0,
+        "fdi_sub_gap": 100.0,
+        "fdi_sub_mean_ratio": 50.0,
+        "fdi_sub_msrp_inflation": 100.0,
+        "fdi_sub_recent_anomaly": 0.0,
+        "fdi_score": 70.0,
+        "fdi_risk_tier": "High Risk"
+      },
+      "expected_risk_tier": "High Risk",
+      "records": [
+        {
+          "record_id": "SCN04_HIST_01",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_02",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_03",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_04",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_05",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_06",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_07",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_08",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_09",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_10",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_11",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_12",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_13",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_14",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_15",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_16",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_17",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_18",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_19",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_20",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_21",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_22",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_23",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_24",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_25",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_26",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_27",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_28",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_29",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_HIST_30",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 100.0,
+          "original_price": 100.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN04_EVAL_01",
+          "product_id": "P_TEST_004",
+          "platform": "walmart",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 100.0,
+          "original_price": 250.0,
+          "discount_pct": 60.0
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-05",
+      "scenario_name": "Insufficient Historical Depth",
+      "description": "Cold-start product with only 5 daily observations (4 historical + 1 evaluation). Insufficient for 30-day baseline calculation.",
+      "classification_status": "PROPOSED_QA_CONTRACT",
+      "expected_software_behaviour": "NEEDS_MORE_DATA",
+      "expected_error": "INSUFFICIENT_HISTORY_N_LESS_THAN_30",
+      "product_id": "P_TEST_005",
+      "platform": "walmart",
+      "record_count": 5,
+      "documented_context": {
+        "minimum_history_policy": "Proposed contract requires N >= 30 daily observations (or minimum 14 for degraded baseline) before scoring."
+      },
+      "precomputed_feature_inputs": null,
+      "evaluation_record": {
+        "record_id": "SCN05_REC_05",
+        "product_id": "P_TEST_005",
+        "platform": "walmart",
+        "timestamp": "2024-01-05T00:00:00",
+        "price": 45.0,
+        "original_price": 60.0,
+        "discount_pct": 25.0
+      },
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN05_REC_01",
+          "product_id": "P_TEST_005",
+          "platform": "walmart",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN05_REC_02",
+          "product_id": "P_TEST_005",
+          "platform": "walmart",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN05_REC_03",
+          "product_id": "P_TEST_005",
+          "platform": "walmart",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN05_REC_04",
+          "product_id": "P_TEST_005",
+          "platform": "walmart",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN05_REC_05",
+          "product_id": "P_TEST_005",
+          "platform": "walmart",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 45.0,
+          "original_price": 60.0,
+          "discount_pct": 25.0
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-06",
+      "scenario_name": "Discontinuous Time Series",
+      "description": "Time series containing exactly 15 records with a 14-day calendar gap (2024-01-11 to 2024-01-24 missing).",
+      "classification_status": "PROPOSED_QA_CONTRACT",
+      "expected_software_behaviour": "NEEDS_MORE_DATA",
+      "expected_error": "TIME_SERIES_DISCONTINUITY_CALENDAR_GAP",
+      "product_id": "P_TEST_006",
+      "platform": "flipkart",
+      "record_count": 15,
+      "documented_context": {
+        "calendar_gap": "Observed gap between Jan 10 and Jan 25 is 15 calendar days (14 missing dates). Proposed contract flags discontinuity."
+      },
+      "precomputed_feature_inputs": null,
+      "evaluation_record": {
+        "record_id": "SCN06_REC_15",
+        "product_id": "P_TEST_006",
+        "platform": "flipkart",
+        "timestamp": "2024-01-29T00:00:00",
+        "price": 80.0,
+        "original_price": 100.0,
+        "discount_pct": 20.0
+      },
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN06_REC_01",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_02",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_03",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_04",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_05",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_06",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_07",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_08",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_09",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_10",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_11",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_12",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_13",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_14",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN06_REC_15",
+          "product_id": "P_TEST_006",
+          "platform": "flipkart",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-07",
+      "scenario_name": "Duplicate Composite-Key Collision",
+      "description": "31 total records with 29 unique daily records and 2 colliding records sharing composite key (P_TEST_007, bestbuy, 2024-01-30T00:00:00).",
+      "classification_status": "PROPOSED_QA_CONTRACT",
+      "expected_software_behaviour": "INVALID_INPUT_DUPLICATE",
+      "expected_error": "PRIMARY_KEY_COLLISION_DUPLICATE_TIMESTAMP",
+      "product_id": "P_TEST_007",
+      "platform": "bestbuy",
+      "record_count": 31,
+      "documented_context": {
+        "duplicate_key": "('P_TEST_007', 'bestbuy', '2024-01-30T00:00:00') appears twice with conflicting prices ($45.00 vs $55.00)."
+      },
+      "precomputed_feature_inputs": null,
+      "evaluation_record": null,
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN07_REC_01",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_02",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_03",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_04",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_05",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_06",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_07",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_08",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_09",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_10",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_11",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_12",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_13",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_14",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_15",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_16",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_17",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_18",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_19",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_20",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_21",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_22",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_23",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_24",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_25",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_26",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_27",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_28",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_29",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 50.0,
+          "original_price": 60.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN07_REC_30",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 45.0,
+          "original_price": 60.0,
+          "discount_pct": 25.0
+        },
+        {
+          "record_id": "SCN07_REC_31",
+          "product_id": "P_TEST_007",
+          "platform": "bestbuy",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 55.0,
+          "original_price": 60.0,
+          "discount_pct": 8.33
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-08",
+      "scenario_name": "Malformed Price and Discount Boundaries",
+      "description": "Seven distinct malformed records testing VR-01 through VR-08 schema validation boundaries.",
+      "classification_status": "PROPOSED_QA_CONTRACT",
+      "expected_software_behaviour": "VALIDATION_ERROR",
+      "expected_error": "VALIDATION_RULE_VIOLATION",
+      "product_id": "P_TEST_008",
+      "platform": "amazon",
+      "record_count": 7,
+      "documented_context": {
+        "validation_rules": [
+          "VR-01: Non-positive price (price == 0)",
+          "VR-02: Negative price (price < 0)",
+          "VR-03: Non-positive MSRP (original_price <= 0)",
+          "VR-04: Price exceeds MSRP (price > original_price)",
+          "VR-05: Negative discount (discount_pct < 0)",
+          "VR-06: Discount exceeds 90% dataset cap (90 < discount_pct <= 100)",
+          "VR-07: Discount exceeds 100% mathematical ceiling (discount_pct > 100)",
+          "VR-08: Cross-field arithmetic mismatch (discount_pct != round((MSRP-P)/MSRP*100, 2))"
+        ]
+      },
+      "precomputed_feature_inputs": null,
+      "evaluation_record": null,
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN08_REC_01",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 0.0,
+          "original_price": 50.0,
+          "discount_pct": 100.0,
+          "rules_triggered": [
+            "VR-01",
+            "VR-06"
+          ],
+          "classification": "MULTIPLE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "INVALID_PRICE_ZERO & DISCOUNT_EXCEEDS_DATASET_CAP_90"
+        },
+        {
+          "record_id": "SCN08_REC_02",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-01T00:00:00",
+          "price": -15.0,
+          "original_price": 50.0,
+          "discount_pct": 0.0,
+          "rules_triggered": [
+            "VR-02",
+            "VR-08"
+          ],
+          "classification": "MULTIPLE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "INVALID_PRICE_NEGATIVE & DISCOUNT_FORMULA_MISMATCH"
+        },
+        {
+          "record_id": "SCN08_REC_03",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-02T00:00:00",
+          "price": 50.0,
+          "original_price": 0.0,
+          "discount_pct": 0.0,
+          "rules_triggered": [
+            "VR-03",
+            "VR-04"
+          ],
+          "classification": "MULTIPLE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "INVALID_MSRP_ZERO & PRICE_EXCEEDS_MSRP"
+        },
+        {
+          "record_id": "SCN08_REC_04",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-03T00:00:00",
+          "price": 120.0,
+          "original_price": 100.0,
+          "discount_pct": -20.0,
+          "rules_triggered": [
+            "VR-04",
+            "VR-05"
+          ],
+          "classification": "MULTIPLE (INTRINSIC)",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "PRICE_EXCEEDS_MSRP_NEGATIVE_DISCOUNT"
+        },
+        {
+          "record_id": "SCN08_REC_05",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-04T00:00:00",
+          "price": 5.0,
+          "original_price": 100.0,
+          "discount_pct": 95.0,
+          "rules_triggered": [
+            "VR-06"
+          ],
+          "classification": "ISOLATED",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "DISCOUNT_EXCEEDS_DATASET_CAP_90"
+        },
+        {
+          "record_id": "SCN08_REC_06",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-05T00:00:00",
+          "price": 10.0,
+          "original_price": 100.0,
+          "discount_pct": 110.0,
+          "rules_triggered": [
+            "VR-07",
+            "VR-08"
+          ],
+          "classification": "MULTIPLE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "DISCOUNT_EXCEEDS_MATHEMATICAL_CEILING_100"
+        },
+        {
+          "record_id": "SCN08_REC_07",
+          "product_id": "P_TEST_008",
+          "platform": "amazon",
+          "timestamp": "2024-02-06T00:00:00",
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 50.0,
+          "rules_triggered": [
+            "VR-08"
+          ],
+          "classification": "ISOLATED",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "DISCOUNT_FORMULA_MISMATCH"
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-09",
+      "scenario_name": "Missing Mandatory Fields",
+      "description": "Three records each missing exactly one mandatory schema field (price, original_price, timestamp) with distinct/null timestamps.",
+      "classification_status": "PROPOSED_QA_CONTRACT",
+      "expected_software_behaviour": "VALIDATION_ERROR",
+      "expected_error": "MISSING_MANDATORY_FIELD",
+      "product_id": "P_TEST_009",
+      "platform": "amazon",
+      "record_count": 3,
+      "documented_context": {
+        "null_isolation": "Distinct timestamps (2024-01-31, 2024-02-01, null) avoid composite key collisions while isolating null rejection."
+      },
+      "precomputed_feature_inputs": null,
+      "evaluation_record": null,
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN09_REC_01",
+          "product_id": "P_TEST_009",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": null,
+          "original_price": 100.0,
+          "discount_pct": 20.0,
+          "missing_field": "price",
+          "tested_rule": "VR_NULL_PRICE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "MISSING_MANDATORY_FIELD_PRICE"
+        },
+        {
+          "record_id": "SCN09_REC_02",
+          "product_id": "P_TEST_009",
+          "platform": "amazon",
+          "timestamp": "2024-02-01T00:00:00",
+          "price": 80.0,
+          "original_price": null,
+          "discount_pct": 20.0,
+          "missing_field": "original_price",
+          "tested_rule": "VR_NULL_ORIGINAL_PRICE",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "MISSING_MANDATORY_FIELD_ORIGINAL_PRICE"
+        },
+        {
+          "record_id": "SCN09_REC_03",
+          "product_id": "P_TEST_009",
+          "platform": "amazon",
+          "timestamp": null,
+          "price": 80.0,
+          "original_price": 100.0,
+          "discount_pct": 20.0,
+          "missing_field": "timestamp",
+          "tested_rule": "VR_NULL_TIMESTAMP",
+          "expected_outcome": "VALIDATION_ERROR",
+          "expected_error": "MISSING_MANDATORY_FIELD_TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "scenario_id": "QA-SCN-10",
+      "scenario_name": "Multiple Product-Platform Stream Isolation",
+      "description": "Four independent time-series streams (2 products x 2 platforms = 124 records) verifying strict partition isolation by (product_id, platform).",
+      "classification_status": "VERIFIED_PROTOTYPE_MATH",
+      "expected_software_behaviour": "SUCCESS_EVALUATED",
+      "expected_error": null,
+      "product_id": "MULTI_ENTITY",
+      "platform": "MULTI_PLATFORM",
+      "record_count": 124,
+      "streams_count": 4,
+      "documented_context": {
+        "isolation_rule": "Grouping must strictly be (product_id, platform). Historical statistics from one platform or product must not leak into another."
+      },
+      "streams": [
+        {
+          "stream_id": "STREAM_01",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "composite_key": "(P_TEST_010A, amazon)",
+          "record_count": 31,
+          "precomputed_feature_inputs": {
+            "price_30d_avg": 100.0,
+            "price_30d_max": 100.0,
+            "price_52w_max": 120.0,
+            "price_7d_max": 100.0,
+            "price_volatility_30d": 0.0,
+            "price_spike_flag": 0.0
+          },
+          "evaluation_record": {
+            "record_id": "SCN10_STREAM_01_EVAL_01",
+            "product_id": "P_TEST_010A",
+            "platform": "amazon",
+            "timestamp": "2024-01-31T00:00:00",
+            "price": 75.0,
+            "original_price": 120.0,
+            "discount_pct": 37.5
+          },
+          "expected_calculations": {
+            "ratio_to_30d_avg": 0.75,
+            "ratio_to_30d_max": 0.75,
+            "msrp_inflation_ratio": 1.0,
+            "real_discount_30d": 25.0,
+            "discount_inflation_gap": 12.5,
+            "recent_7d_peak_ratio": 0.0,
+            "fdi_sub_gap": 25.0,
+            "fdi_sub_mean_ratio": 0.0,
+            "fdi_sub_msrp_inflation": 0.0,
+            "fdi_sub_recent_anomaly": 0.0,
+            "fdi_score": 8.75,
+            "fdi_risk_tier": "Low Risk"
+          },
+          "expected_risk_tier": "Low Risk"
+        },
+        {
+          "stream_id": "STREAM_02",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "composite_key": "(P_TEST_010A, walmart)",
+          "record_count": 31,
+          "precomputed_feature_inputs": {
+            "price_30d_avg": 200.0,
+            "price_30d_max": 200.0,
+            "price_52w_max": 250.0,
+            "price_7d_max": 250.0,
+            "price_volatility_30d": 0.0,
+            "price_spike_flag": 0.0
+          },
+          "evaluation_record": {
+            "record_id": "SCN10_STREAM_02_EVAL_01",
+            "product_id": "P_TEST_010A",
+            "platform": "walmart",
+            "timestamp": "2024-01-31T00:00:00",
+            "price": 250.0,
+            "original_price": 300.0,
+            "discount_pct": 16.67
+          },
+          "expected_calculations": {
+            "ratio_to_30d_avg": 1.25,
+            "ratio_to_30d_max": 1.25,
+            "msrp_inflation_ratio": 1.2,
+            "real_discount_30d": 0.0,
+            "discount_inflation_gap": 16.67,
+            "recent_7d_peak_ratio": 0.25,
+            "fdi_sub_gap": 33.34,
+            "fdi_sub_mean_ratio": 100.0,
+            "fdi_sub_msrp_inflation": 80.0,
+            "fdi_sub_recent_anomaly": 50.0,
+            "fdi_score": 65.17,
+            "fdi_risk_tier": "High Risk"
+          },
+          "expected_risk_tier": "High Risk"
+        },
+        {
+          "stream_id": "STREAM_03",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "composite_key": "(P_TEST_010B, amazon)",
+          "record_count": 31,
+          "precomputed_feature_inputs": {
+            "price_30d_avg": 10.0,
+            "price_30d_max": 10.0,
+            "price_52w_max": 10.0,
+            "price_7d_max": 10.0,
+            "price_volatility_30d": 0.0,
+            "price_spike_flag": 0.0
+          },
+          "evaluation_record": {
+            "record_id": "SCN10_STREAM_03_EVAL_01",
+            "product_id": "P_TEST_010B",
+            "platform": "amazon",
+            "timestamp": "2024-01-31T00:00:00",
+            "price": 10.0,
+            "original_price": 10.0,
+            "discount_pct": 0.0
+          },
+          "expected_calculations": {
+            "ratio_to_30d_avg": 1.0,
+            "ratio_to_30d_max": 1.0,
+            "msrp_inflation_ratio": 1.0,
+            "real_discount_30d": 0.0,
+            "discount_inflation_gap": 0.0,
+            "recent_7d_peak_ratio": 0.0,
+            "fdi_sub_gap": 0.0,
+            "fdi_sub_mean_ratio": 50.0,
+            "fdi_sub_msrp_inflation": 0.0,
+            "fdi_sub_recent_anomaly": 0.0,
+            "fdi_score": 15.0,
+            "fdi_risk_tier": "Low Risk"
+          },
+          "expected_risk_tier": "Low Risk"
+        },
+        {
+          "stream_id": "STREAM_04",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "composite_key": "(P_TEST_010B, walmart)",
+          "record_count": 31,
+          "precomputed_feature_inputs": {
+            "price_30d_avg": 500.0,
+            "price_30d_max": 500.0,
+            "price_52w_max": 500.0,
+            "price_7d_max": 500.0,
+            "price_volatility_30d": 0.0,
+            "price_spike_flag": 0.0
+          },
+          "evaluation_record": {
+            "record_id": "SCN10_STREAM_04_EVAL_01",
+            "product_id": "P_TEST_010B",
+            "platform": "walmart",
+            "timestamp": "2024-01-31T00:00:00",
+            "price": 500.0,
+            "original_price": 500.0,
+            "discount_pct": 0.0
+          },
+          "expected_calculations": {
+            "ratio_to_30d_avg": 1.0,
+            "ratio_to_30d_max": 1.0,
+            "msrp_inflation_ratio": 1.0,
+            "real_discount_30d": 0.0,
+            "discount_inflation_gap": 0.0,
+            "recent_7d_peak_ratio": 0.0,
+            "fdi_sub_gap": 0.0,
+            "fdi_sub_mean_ratio": 50.0,
+            "fdi_sub_msrp_inflation": 0.0,
+            "fdi_sub_recent_anomaly": 0.0,
+            "fdi_score": 15.0,
+            "fdi_risk_tier": "Low Risk"
+          },
+          "expected_risk_tier": "Low Risk"
+        }
+      ],
+      "precomputed_feature_inputs": null,
+      "evaluation_record": null,
+      "expected_calculations": null,
+      "expected_risk_tier": null,
+      "records": [
+        {
+          "record_id": "SCN10_STREAM_01_HIST_01",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_02",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_03",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_04",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_05",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_06",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_07",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_08",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_09",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_10",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_11",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_12",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_13",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_14",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_15",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_16",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_17",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_18",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_19",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_20",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_21",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_22",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_23",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_24",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_25",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_26",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_27",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_28",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_29",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_HIST_30",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 100.0,
+          "original_price": 120.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_01_EVAL_01",
+          "product_id": "P_TEST_010A",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 75.0,
+          "original_price": 120.0,
+          "discount_pct": 37.5
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_01",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_02",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_03",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_04",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_05",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_06",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_07",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_08",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_09",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_10",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_11",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_12",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_13",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_14",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_15",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_16",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_17",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_18",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_19",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_20",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_21",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_22",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_23",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_24",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_25",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_26",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_27",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_28",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_29",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_HIST_30",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 200.0,
+          "original_price": 250.0,
+          "discount_pct": 20.0
+        },
+        {
+          "record_id": "SCN10_STREAM_02_EVAL_01",
+          "product_id": "P_TEST_010A",
+          "platform": "walmart",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 250.0,
+          "original_price": 300.0,
+          "discount_pct": 16.67
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_01",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_02",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_03",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_04",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_05",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_06",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_07",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_08",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_09",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_10",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_11",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_12",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_13",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_14",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_15",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_16",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_17",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_18",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_19",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_20",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_21",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_22",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_23",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_24",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_25",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_26",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_27",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_28",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_29",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_HIST_30",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_03_EVAL_01",
+          "product_id": "P_TEST_010B",
+          "platform": "amazon",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 10.0,
+          "original_price": 10.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_01",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-01T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_02",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-02T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_03",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-03T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_04",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-04T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_05",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-05T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_06",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-06T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_07",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-07T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_08",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-08T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_09",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-09T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_10",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-10T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_11",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-11T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_12",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-12T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_13",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-13T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_14",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-14T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_15",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-15T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_16",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-16T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_17",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-17T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_18",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-18T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_19",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-19T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_20",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-20T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_21",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-21T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_22",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-22T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_23",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-23T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_24",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-24T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_25",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-25T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_26",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-26T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_27",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-27T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_28",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-28T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_29",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-29T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_HIST_30",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-30T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        },
+        {
+          "record_id": "SCN10_STREAM_04_EVAL_01",
+          "product_id": "P_TEST_010B",
+          "platform": "walmart",
+          "timestamp": "2024-01-31T00:00:00",
+          "price": 500.0,
+          "original_price": 500.0,
+          "discount_pct": 0.0
+        }
+      ]
+    }
+  ]
+}
