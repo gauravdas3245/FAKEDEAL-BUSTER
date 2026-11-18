@@ -1,60 +1,173 @@
+# FakeDeal Buster — Dataset Data Dictionary
 
-# FakeDeal Buster – Dataset Data Dictionary
+> **Document Status:** OFFICIAL PRODUCTION DATASET SPECIFICATION  
+> **Prepared by:** Data Preparation Analyst (Lakhyajyoti Phukan)  
+> **Target Architecture:** 46 Original Raw Columns + 13 Prototype Feature Pipeline Columns = **59 Total Columns**
 
-## 1. Overview
+---
 
-This document describes the important fields available in the E-Commerce Product Price Tracker Dataset and explains their potential use in the FakeDeal Buster project.
+## 1. Governance, Licence & Scope Statement
 
-The exact data types, missing values, and field availability must be confirmed during dataset inspection.
+### 1.1 Verified Dataset Scope
+This data dictionary documents the complete schema for the *E-Commerce Product Price Tracker Dataset* (Amith Nair, Kaggle) utilized in the **FakeDeal Buster** academic project. It covers all 25,606,940 raw observation records across two full years (`2023-01-01` to `2024-12-30`) and details the 13 feature additions introduced during prototype feature engineering.
 
-## 2. Product Information Fields
+### 1.2 Licence Harmonization Status
+- **Observed Archive Licence:** Inspection of `LICENSE.txt` and `README.md` within the downloaded Kaggle archive confirms the text declares **CC0 1.0 Universal (Public Domain Dedication)**.
+- **Preliminary Project Documentation:** Initial repository documentation referenced **Kaggle Open License / CC BY-SA 4.0**.
+- **Harmonization Status:** **Pending Formal Faculty Mentor Reconciliation.** Neither licence has been confirmed as authoritative over the other. Both licences grant permission for academic research, analysis, and educational publication. Until formal direction is issued by the faculty mentor, the licensing status is marked as pending harmonization without unilateral confirmation.
 
-| Field | Description | Project Usage |
-|---|---|---|
-| `product_id` | Unique identifier of a product | Product identification |
-| `product_title` | Product name or title, if available | Product display |
-| `brand` | Product brand | Product information |
-| `category` | Product category | Category-based analysis |
-| `platform` | E-commerce platform name | Platform comparison |
+---
 
-## 3. Pricing Fields
+## 2. Original Dataset Schema (46 Verified Columns)
 
-| Field | Description | Project Usage |
-|---|---|---|
-| `price` | Current recorded product price | Price analysis |
-| `original_price` | Recorded original or reference price | Discount calculation |
-| `discount_pct` | Recorded discount percentage | Discount analysis |
-| `timestamp` | Date and time of the price observation | Historical price analysis |
+All 46 columns below have been verified against all 6 tabular CSV files in the raw dataset (`ecommerce_processed.csv`, `ecommerce_train.csv`, `ecommerce_val.csv`, `ecommerce_test.csv`, `ecommerce_forecast.csv`, `ecommerce_anomalies.csv`) and match `metadata.json` 100% in sequential column order and data types.
 
-## 4. Historical and Statistical Fields
+> [!NOTE]
+> **Nomenclature Correction:** Physical CSV headers confirm the column name is **`title`** (correcting earlier references to `product_title`).
 
-| Field | Description | Project Usage |
-|---|---|---|
-| Rolling price statistics | Historical price summaries, where available | Price trend analysis |
-| Price-related historical features | Previous price behaviour, where available | Feature engineering |
-| `target_price_7d` | Dataset-provided seven-day target price | Forecasting experiments |
-| `target_price_30d` | Dataset-provided thirty-day target price | Forecasting experiments |
-| `target_price_direction_7d` | Dataset-provided seven-day price direction | Price direction analysis |
+| # | Column Name | Raw Data Type | Feature Group | Project Role | Description & Verified Value Domain |
+|---|---|---|---|---|---|
+| 01 | `product_id` | String | Core Identifier | Product Key | Unique catalog identifier (e.g., `P0000001` to `P0010000`). Exactly 10,000 unique catalog items. |
+| 02 | `title` | String | Core Identifier | Display Text | Product title string (e.g., `Google Max Smartphones  (Green)`). |
+| 03 | `brand` | String | Categorical | Brand Metadata | Product manufacturer brand (e.g., `Google`, `Nike`, `Apple`, `Sony`). **Domain Note:** Represents the product manufacturer, NOT a third-party marketplace seller. |
+| 04 | `category` | String | Categorical | Segmentation | Main retail category. Exactly 7 values: `Electronics` (25%), `Fashion` (20%), `Gaming` (15%), `Appliances` (12%), `Books` (10%), `Household` (10%), `Sports` (8%). |
+| 05 | `subcategory` | String | Categorical | Segmentation | Subcategory within main category. Exactly 35 distinct values (5 per main category). |
+| 06 | `platform` | String | Categorical | Platform Context | Marketplace platform where price was observed. Exactly 5 values: `amazon`, `ebay`, `walmart`, `flipkart`, `bestbuy`. *(Architectural target: ~20% uniform distribution).* |
+| 07 | `timestamp` | Datetime (ISO) | Temporal | Time-Series Index | Observation timestamp in ISO-8601 (`YYYY-MM-DDTHH:MM:SS`). Daily observations spanning `2023-01-01` to `2024-12-30`. |
+| 08 | `year` | Float (Numeric) | Temporal | Calendar Feature | Calendar year observation (`2023.0` or `2024.0`). |
+| 09 | `month` | Float (Numeric) | Temporal | Seasonality | Calendar month (`1.0` to `12.0`). |
+| 10 | `day` | Float (Numeric) | Temporal | Calendar Feature | Day of the month (`1.0` to `31.0`). |
+| 11 | `dayofweek` | Float (Numeric) | Temporal | Seasonality | Day of week index (`0.0` = Monday to `6.0` = Sunday). |
+| 12 | `price` | Float (USD) | Core Pricing | Selling Price | Current daily transaction price in USD. Verified positive across all 25.6M rows (`price > 0`). |
+| 13 | `original_price` | Float (USD) | Core Pricing | Anchor Price | Displayed reference MSRP / list price in USD. Verified positive and $\ge \text{price}$ across all 25.6M rows. |
+| 14 | `discount_pct` | Float (%) | Core Pricing | Nominal Discount | Displayed nominal percentage discount: $\frac{\text{original\_price} - \text{price}}{\text{original\_price}} \times 100\%$. Domain: `[0.0, 90.0]`. |
+| 15 | `stock_status` | String | Inventory | Context Feature | Inventory availability status: `in_stock` or `out_of_stock`. |
+| 16 | `avg_rating` | Float | Engagement | Quality Signal | Customer average review rating. Domain: `[1.0, 5.0]`. |
+| 17 | `review_count` | Float (Integer) | Engagement | Volume Signal | Total count of customer reviews. |
+| 18 | `is_flagship` | Float (Binary) | Product Flag | Brand Tier | Flag indicating flagship tier product (`0.0` or `1.0`). |
+| 19 | `launch_year` | Float (Numeric) | Lifecycle | Product Age | Launch year of the product model. |
+| 20 | `asin` | String | Identifier | Catalog Hash | Platform catalog alphanumeric hash code (e.g., `5F2B9323C3`). |
+| 21 | `price_change_abs` | Float (USD) | Rolling Lag | Differential | Daily absolute price difference: $P_t - P_{t-1}$. Null on Day 1 ($t=0$). |
+| 22 | `price_change_pct` | Float (%) | Rolling Lag | Differential | Daily percentage price difference: $\frac{P_t - P_{t-1}}{P_{t-1}} \times 100\%$. Null on Day 1 ($t=0$). |
+| 23 | `price_7d_avg` | Float (USD) | Rolling Baseline | Short-Term Mean | 7-day trailing rolling mean price ($\mu_7$). Fully saturated after Day 7. |
+| 24 | `price_30d_avg` | Float (USD) | Rolling Baseline | Monthly Baseline | 30-day trailing rolling mean price ($\mu_{30}$). Primary benchmark for genuine discount calculation. Fully saturated after Day 30. |
+| 25 | `price_7d_std` | Float | Rolling Variance | Short-Term Spread | 7-day trailing rolling price standard deviation ($\sigma_7$). Null on Day 1 ($t=0$). Fully saturated after Day 7. |
+| 26 | `price_30d_std` | Float | Rolling Variance | Monthly Spread | 30-day trailing rolling price standard deviation ($\sigma_{30}$). Null on Day 1 ($t=0$). Fully saturated after Day 30. |
+| 27 | `price_7d_min` | Float (USD) | Rolling Extrema | Short-Term Floor | 7-day trailing rolling minimum price. Fully saturated after Day 7. |
+| 28 | `price_30d_min` | Float (USD) | Rolling Extrema | Monthly Floor | 30-day trailing rolling minimum price. Fully saturated after Day 30. |
+| 29 | `price_7d_max` | Float (USD) | Rolling Extrema | Short-Term Peak | 7-day trailing rolling maximum price. Verified empirically to track preceding observations ($t-6$ to $t$). Fully saturated after Day 7. |
+| 30 | `price_30d_max` | Float (USD) | Rolling Extrema | Monthly Peak | 30-day trailing rolling maximum price ($P_{\text{max,30}}$). Fully saturated after Day 30. |
+| 31 | `price_52w_min` | Float (USD) | Rolling Extrema | Annual Floor | 52-week trailing rolling minimum price. **Lookback Note:** Saturated only after 364 days; early 2023 values represent expanding inception-to-date minima. |
+| 32 | `price_52w_max` | Float (USD) | Rolling Extrema | Annual Ceiling | 52-week trailing rolling maximum price ($P_{\text{max,52}}$). **Lookback Note:** Saturated only after 364 days; early 2023 values represent expanding inception-to-date maxima. |
+| 33 | `price_volatility_30d` | Float | Rolling Variance | Volatility Metric | **ORIGINAL RAW COLUMN.** Pre-normalized coefficient of variation: $\frac{\sigma_{30}}{\mu_{30}}$. Null on Day 1 ($t=0$). Fully saturated after Day 30. |
+| 34 | `discount_vs_30d_avg` | Float (%) | Comparative | Discount Spread | Provided difference between displayed discount and 30-day average price baseline. |
+| 35 | `is_all_time_low` | Float (Binary) | Rolling Flag | Extreme Event | Flag indicating current price is the all-time low to date (`0.0` or `1.0`). |
+| 36 | `is_all_time_high` | Float (Binary) | Rolling Flag | Extreme Event | Flag indicating current price is the all-time high to date (`0.0` or `1.0`). |
+| 37 | `popularity_score` | Float | Engagement | Popularity Signal | Composite product popularity score. |
+| 38 | `fake_discount_flag` | Float (Binary) | Indicator Flag | **DEFUNCT TARGET** | **VERIFIED FACT:** Exactly 0 positive instances across all 25,606,940 records (100% zero). Cannot be used as a classification target. |
+| 39 | `price_spike_flag` | Float (Binary) | Anomaly Flag | Spike Indicator | Algorithmic price spike indicator. Exactly 48,554 positive records across full dataset (0.1896% incidence). **Domain Note:** Reflects statistical price volatility, NOT verified retail fraud. |
+| 40 | `is_black_friday_week` | Float (Binary) | Calendar Flag | Promotional Event | Indicator for Black Friday promotional period (`0.0` or `1.0`). |
+| 41 | `is_holiday_season` | Float (Binary) | Calendar Flag | Seasonal Event | Indicator for Q4 holiday shopping season (`0.0` or `1.0`). |
+| 42 | `is_weekend` | Float (Binary) | Calendar Flag | Day Pattern | Indicator for weekend observations (`0.0` or `1.0`). |
+| 43 | `value_score` | Float | Quality | Consumer Metric | Composite consumer value score. |
+| 44 | `target_price_7d` | Float (USD) | Future Target | **LEAKAGE TARGET** | Expected selling price in 7 days ($t+7$). **STRICTLY EXCLUDED** from model feature inputs. |
+| 45 | `target_price_30d` | Float (USD) | Future Target | **LEAKAGE TARGET** | Expected selling price in 30 days ($t+30$). **STRICTLY EXCLUDED** from model feature inputs. |
+| 46 | `target_price_direction_7d` | Float (Categorical) | Future Target | **LEAKAGE TARGET** | 7-day price direction (`-1.0` down, `0.0` flat, `1.0` up). **STRICTLY EXCLUDED** from model feature inputs. |
 
-The exact names of rolling statistical columns must be verified against the original dataset schema before implementation.
+---
 
-## 5. Dataset Indicator Fields
+## 3. Added Columns in Stage 5 Prototyping (13 Columns)
 
-| Field | Description | Project Usage |
-|---|---|---|
-| `fake_discount_flag` | Dataset-provided indicator associated with fake discounts | Candidate classification target, subject to label validation |
-| `price_spike_flag` | Dataset-provided indicator associated with price spikes | Price anomaly analysis |
+The prototype feature pipeline (`ml/prototype_pipeline.py`) computes **exactly 13 new columns**, expanding the schema to **59 total columns** in `prototype_train_sample_100k.csv`, `natural_val_sample_20k.csv`, and `natural_test_sample_20k.csv`.
 
-These indicators must not automatically be treated as verified real-world fraud labels. Their distribution and generation methodology must be examined before model training.
+### 3.1 Newly Engineered Continuous Pricing Features (6 Columns)
 
-## 6. Important Notes
+| Column Name | Data Type | Mathematical Formula | Numerical Safeguard | Lookback Saturation | Purpose & Consumer Intelligence |
+|---|---|---|---|---|---|
+| `ratio_to_30d_avg` | Float | $\frac{\text{price}}{\max(\text{price\_30d\_avg}, \epsilon)}$ | $\epsilon = 10^{-6}$ | Saturated after Day 30 | Measures price level relative to monthly mean. Ratios $\ge 1.0$ indicate price is at or above recent historical reality. |
+| `ratio_to_30d_max` | Float | $\frac{\text{price}}{\max(\text{price\_30d\_max}, \epsilon)}$ | $\epsilon = 10^{-6}$ | Saturated after Day 30 | Evaluates current price relative to monthly ceiling. |
+| `msrp_inflation_ratio` | Float | $\frac{\text{original\_price}}{\max(\text{price\_52w\_max}, \epsilon)}$ | $\epsilon = 10^{-6}$ | Expanding in early 2023; fully saturated Day 365 | Evaluates reference anchor legitimacy. Ratios $> 1.0$ indicate the advertised MSRP exceeds the annual peak. |
+| `real_discount_30d` | Float (%) | $\max\left(0.0, \frac{\text{price\_30d\_avg} - \text{price}}{\max(\text{price\_30d\_avg}, \epsilon)} \times 100\right)$ | $\epsilon = 10^{-6}$ | Saturated after Day 30 | True economic discount relative to preceding 30-day average. |
+| `discount_inflation_gap` | Float (%) | $\text{discount\_pct} - \text{real\_discount\_30d}$ | None | Saturated after Day 30 | Difference between advertised marketing markdown and real economic savings. |
+| `recent_7d_peak_ratio` | Float | $\max\left(0.0, \frac{\text{price\_7d\_max} - \text{price\_30d\_avg}}{\max(\text{price\_30d\_avg}, \epsilon)}\right)$ | $\epsilon = 10^{-6}$ | Saturated after Day 30 | Measures recent price elevation relative to monthly baseline prior to promotional event. |
 
-- Field names in this document are based on the available dataset documentation and must be checked against the actual downloaded files.
-- Some descriptions are conceptual and require schema-level verification.
-- Missing or inconsistent values must be handled during preprocessing.
-- Target variables must not be used as input features when doing so would cause data leakage.
-- The project will document any changes to field names or feature definitions during implementation.
+### 3.2 Proposed Standardized FDI Sub-Scores (4 Columns)
+All sub-scores are scaled from $0.0$ to $100.0$ and represent an **experimental methodology pending formal faculty sign-off**:
 
-## 7. Data Dictionary Maintenance
+| Sub-Score Name | Data Type | Weight | Formula | Sub-Score Behavior |
+|---|---|:---:|---|---|
+| `fdi_sub_gap` | Float | **35%** | $\text{clip}\left(\frac{\text{discount\_inflation\_gap}}{50.0}, 0.0, 1.0\right) \times 100.0$ | Primary penalty on marketing discount spread. Saturates at 50% gap. |
+| `fdi_sub_mean_ratio` | Float | **30%** | $\text{clip}\left(\frac{\text{ratio\_to\_30d\_avg} - 0.85}{0.30}, 0.0, 1.0\right) \times 100.0$ | Evaluates baseline deal depth. Genuine deep discounts ($<0.85$) score 0; prices $\ge 1.15$ score 100. |
+| `fdi_sub_msrp_inflation` | Float | **20%** | $\text{clip}\left(\frac{\text{msrp\_inflation\_ratio} - 1.00}{0.25}, 0.0, 1.0\right) \times 100.0$ | Penalizes reference price inflation above annual high. Saturates at 25% inflation. |
+| `fdi_sub_recent_anomaly` | Float | **15%** | $\text{clip}\left(0.60 \cdot (\text{price\_spike\_flag} \cdot 100) + 0.40 \cdot \left(\frac{\text{recent\_7d\_peak\_ratio}}{0.20} \cdot 100\right), 0.0, 100.0\right)$ | Blends observed price spike events and recent price surge intensity. |
 
-This document will be updated after the dataset inspection and preprocessing stages. The final version should reflect the actual columns, data types, and feature transformations used by the application.
+### 3.3 Proposed Composite FDI Outputs (2 Columns)
+
+| Output Name | Data Type | Formula / Logic | Domain Interpretation |
+|---|---|---|---|
+| `fdi_score` | Float | $\sum (w_i \cdot S_i) = 0.35 \cdot S_{\text{gap}} + 0.30 \cdot S_{\text{mean}} + 0.20 \cdot S_{\text{msrp}} + 0.15 \cdot S_{\text{anom}}$ | Continuous composite Fake Discount Index scaled from $0.0$ to $100.0$. |
+| `fdi_risk_tier` | String | $\ge 80$: `Critical Risk`<br>$\ge 60$: `High Risk`<br>$\ge 30$: `Moderate Risk`<br>$< 30$: `Low Risk` | Categorical consumer risk tier. **Experimental working hypothesis**, not legal fraud adjudication. |
+
+### 3.4 Sample Source Metadata Column (1 Column)
+
+| Column Name | Data Type | Permitted Values | Purpose |
+|---|---|---|---|
+| `sample_source` | String | `natural_train`<br>`oversampled_train_anomaly`<br>`natural_val`<br>`natural_test` | Explicitly tags row origin to prevent mixing oversampled anomaly stress-test data with natural evaluation data. |
+
+---
+
+## 4. Feature Space & Classification Architecture
+
+To establish strict engineering boundaries, all features are categorized into three distinct classes:
+
+### Category A: Original Raw Dataset Attributes (46 Columns)
+The 46 columns verified in the original raw dataset CSV headers (`product_id`, `title`, `brand`, ..., `price_volatility_30d`, ..., `target_price_direction_7d`).
+
+### Category B: Supplementary & Prototype Engineered Features (13 Columns)
+The 13 columns added by `ml/prototype_pipeline.py` to produce the 59-column prototype sample datasets:
+- **`sample_source` (Column #47):** Metadata tracking column (`natural_train`, `oversampled_train_anomaly`, `natural_val`, `natural_test`). *(Audit Confirmation: `evaluation_timestamp` does NOT exist in the output schema).*
+- **`ratio_to_30d_avg` (Column #48):** Ratio of current price to 30-day rolling average.
+- **`ratio_to_30d_max` (Column #49):** Ratio of current price to 30-day rolling maximum.
+- **`msrp_inflation_ratio` (Column #50):** Ratio of original MSRP to 52-week rolling maximum.
+- **`real_discount_30d` (Column #51):** True economic discount relative to 30-day average.
+- **`discount_inflation_gap` (Column #52):** Spread between advertised discount and real discount.
+- **`recent_7d_peak_ratio` (Column #53):** Pre-promotional price ramp indicator.
+- **`fdi_sub_gap`, `fdi_sub_mean_ratio`, `fdi_sub_msrp_inflation`, `fdi_sub_recent_anomaly` (Columns #54–57):** 4 provisional FDI sub-scores.
+- **`fdi_score`, `fdi_risk_tier` (Columns #58–59):** Composite Fake Discount Index score and provisional heuristic risk tier.
+
+### Category C: Four Canonical Isolation Forest Features (Verification & Status)
+
+The four canonical features specified for the target Isolation Forest anomaly detection model are evaluated below against the actual prototype implementation in `ml/prototype_pipeline.py`:
+
+| Canonical Feature Name | Implementation Status in `ml/prototype_pipeline.py` | Exact Formula in Code | Discrepancy Analysis & Status |
+|---|---|---|---|
+| **`msrp_to_30d_avg`** | **NOT IMPLEMENTED UNDER THIS NAME** | `msrp_inflation_ratio = msrp / safe_max52` (Line 84) | **UNRESOLVED DISCREPANCY:** The implemented pipeline uses `msrp_inflation_ratio` (MSRP / 52-week peak). The proposed feature `msrp_to_30d_avg` (MSRP / 30-day mean) does not exist in `ml/prototype_pipeline.py` or CSV headers. Marked UNRESOLVED pending Gaurav's confirmation. |
+| **`ratio_to_30d_avg`** | **VERIFIED IMPLEMENTED** | `ratio_to_30d_avg = price / safe_avg30` (Line 82) | **EXACT MATCH:** Present in `IF_FEATURES` (Line 41) and computed at Line 82. |
+| **`price_volatility_30d`** | **VERIFIED IMPLEMENTED** | Consumed directly from Column #33 (Line 74) | **EXACT MATCH:** Original raw column consumed directly in `IF_FEATURES` (Line 45). |
+| **`recent_7d_surge`** | **NOT IMPLEMENTED UNDER THIS NAME** | `recent_7d_peak_ratio = max(0.0, (max7 - avg30) / safe_avg30)` (Line 91) | **UNRESOLVED DISCREPANCY:** The implemented pipeline uses `recent_7d_peak_ratio` (Line 46, Line 91). The name `recent_7d_surge` does not exist in source code. Marked UNRESOLVED pending Gaurav's confirmation. |
+
+> [!IMPORTANT]
+> **Prototype Pipeline Implementation Notice:**  
+> In `ml/prototype_pipeline.py#L40-47`, the executable prototype currently fits Isolation Forest on **6 continuous dimensions**:  
+> `IF_FEATURES = ["ratio_to_30d_avg", "ratio_to_30d_max", "msrp_inflation_ratio", "discount_inflation_gap", "price_volatility_30d", "recent_7d_peak_ratio"]`.  
+> In strict accordance with execution rules, no ML source code has been altered. The canonical 4-feature specification and the prototype 6-feature vector remain clearly distinguished.
+
+---
+
+## 5. Domain Rules & Service Boundary Clarification
+
+### 5.1 Domain Entity Rules
+1. **`brand` Meaning:** Represents product manufacturing brand (e.g., Apple, Nike, Samsung). It is NOT a marketplace seller ID and cannot be penalized as a rogue merchant proxy.
+2. **`platform` Meaning:** Represents the marketplace site (Amazon, eBay, Walmart, Flipkart, BestBuy). Pricing comparisons reflect platform-level pricing policies.
+3. **`fake_discount_flag` Meaning:** Defunct indicator (100% zero). Cannot be used for supervised training.
+
+### 5.2 Existing ML/FDI Service Behaviour vs. Proposed Backend API Contract
+- **Existing ML Pipeline (`ml/prototype_pipeline.py`):**
+  - Function `compute_features_and_fdi` expects precomputed, valid float inputs for all 9 pricing fields.
+  - It contains zero history sufficiency checks ($N < 30$), zero calendar gap checks, and zero null validation.
+  - If nulls or non-numeric types are passed, standard Python `KeyError` or `TypeError` exceptions are raised.
+  - FDI score calculations represent **illustrative prototype evaluations on synthetic/sample inputs** using provisional heuristic thresholds.
+- **Backend API Contract (FastAPI `POST /analyze`):**
+  - Responses such as `INSUFFICIENT_INPUTS`, `NEEDS_MORE_DATA`, HTTP 422 Unprocessable Entity, or specific validation error codes (`INVALID_PRICE_ZERO`, `PRIMARY_KEY_COLLISION`) are **PROPOSED QA TEST CONTRACTS** defined for future integration.
+  - Because `backend/` currently contains only `backend/README.md` and no executable FastAPI endpoints exist, these validation behaviors are **pending confirmation upon Rahul Amin's backend package delivery**.
+4. **`price_spike_flag` Meaning:** Statistical anomaly indicator reflecting short-term volatility. Does not constitute verified fraud ground truth.
