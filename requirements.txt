@@ -1,0 +1,19 @@
+# Core ML & Data Stack
+numpy>=2.0.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+joblib>=1.4.0
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# Analytical Query Engine (Large Dataset Processing)
+duckdb>=1.1.0
+
+# Backend REST API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+
+# Testing & HTTP Client
+pytest>=8.0.0
+httpx>=0.27.0
