@@ -20,7 +20,9 @@
 - Historical price analysis requires sufficient product-level price records.
 - Products with limited historical observations may not support reliable trend analysis.
 - Forecasting accuracy may decrease when price patterns change unexpectedly.
-- A 14-day forecast will only be provided if sufficient historical data and a suitable forecasting method are available.
+- The 14-day forecast is a conditional flat-baseline estimate, not a trained or guaranteed forecasting model. It requires 180 consecutive observed dates and uses five rolling-origin backtest windows; it produces no uncertainty interval.
+- The available source ends on 2024-12-30, so current-date forecasting in 2026 is unavailable.
+- The constant `fake_discount_flag` and semantically different `price_spike_flag` do not support valid fake-discount classifier evaluation.
 
 ## 4. Marketplace Integration Limitations
 
@@ -40,7 +42,7 @@
 - Integration with reliable live marketplace data sources.
 - Collection of real historical product price records.
 - Improved model validation using verified labels.
-- More robust price forecasting methods.
+- Validation of forecast methods on later real-world observations.
 - Deployment as a scalable web application.
 
 ## 7. Disclaimer

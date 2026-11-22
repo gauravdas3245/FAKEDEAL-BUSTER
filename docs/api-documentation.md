@@ -1,118 +1,37 @@
-# FakeDeal Buster – API Documentation
+# API documentation
 
-## 1. Overview
+The implemented FastAPI contract is documented in [`backend/API_CONTRACT.md`](../backend/API_CONTRACT.md). This page intentionally summarizes the live routes; it does not retain the earlier proposed product-name-only response schema.
 
-This document describes the communication between the React frontend and the FastAPI backend of FakeDeal Buster.
+## Local API
 
-The backend receives product pricing information, validates the input, performs the available analysis, and returns the result in JSON format.
+From the repository root, with the derived dataset store and model artifacts available:
 
-## 2. Base URL
-
-During local development:
-
-```text
-http://localhost:8000
+```powershell
+& 'C:\Users\GAURAV DAS\.conda\envs\fakedeal\python.exe' -m uvicorn app.main:app --app-dir backend --reload
 ```
 
-The actual port and API URL may be updated during integration.
+The API listens on `http://127.0.0.1:8000`. `GET /health` checks process health and `/docs` serves FastAPI's OpenAPI UI.
 
-## 3. API Endpoints
+## Implemented routes
 
-### 3.1 Health Check
-
-**Endpoint:** `/health`
-
-**Method:** `GET`
-
-**Purpose:** Checks whether the backend server is running.
-
-**Expected Response:**
-
-```json
-{
-  "status": "healthy",
-  "message": "FakeDeal Buster API is running"
-}
-```
-
-### 3.2 Product Discount Analysis
-
-**Endpoint:** `/api/analyze`
-
-**Method:** `POST`
-
-**Purpose:** Receives product pricing information and returns an analysis of the advertised discount.
-
-**Request Body:**
-
-```json
-{
-  "product_name": "Example Smartphone",
-  "current_price": 14999,
-  "original_price": 19999,
-  "historical_prices": []
-}
-```
-
-**Input Parameters:**
-
-| Parameter | Type | Description |
+| Method | Route | Purpose |
 |---|---|---|
-| product_name | String | Name of the product |
-| current_price | Number | Current selling price |
-| original_price | Number | Displayed original price |
-| historical_prices | Array | Optional historical price observations |
+| GET | `/health` | Process, database file, and model-bundle presence status. |
+| GET | `/api/catalog` | Dataset-derived catalog metadata and supported values. |
+| GET | `/api/catalog/metadata` | Supported filters/date range without product records. |
+| GET | `/api/catalog/search` | Bounded search over actual catalog identities. |
+| POST | `/api/inspect` | User product metadata resolution and analysis adapter. |
+| POST | `/api/analyze` | Strict five-field internal analysis contract. |
+| POST | `/api/forecast` | Conditional 14-day baseline forecast for product/platform/date. |
+| GET | `/api/models/synthetic-comparison` | LR/RF metrics on generated held-out scenarios only. |
 
-**Expected Response Structure:**
+`/api/inspect` adapts a title/platform/category and submitted prices to the unchanged five-field ML request. Product IDs are resolved only from exact normalized actual catalog metadata. A recognized Amazon URL is identity evidence only when its parsed ASIN matches the actual Amazon dataset record and submitted name/category. Seller fields remain optional validated metadata and are not ML inputs.
 
-```json
-{
-  "product_name": "Example Smartphone",
-  "current_price": 14999,
-  "original_price": 19999,
-  "discount_percentage": 25.0,
-  "verdict": "Potential Fake Discount",
-  "confidence": null,
-  "analysis_message": "Analysis result will be generated using available pricing information."
-}
-```
+`/api/analyze` and `/api/inspect` return separate `ml_anomaly` and `fdi` objects from the central ML service plus `synthetic_classifier`, along with `assessment_verdict` and `assessment_explanation`. The assessment states are:
+1. `Potential Suspicious Discount Pattern` — Anomaly detected by Isolation Forest relative to historical baseline.
+2. `No Suspicious Pattern Detected` — Listed price and discount conform to normal historical patterns.
+3. `Insufficient Evidence` — Inadequate historical price data (<14 days) to evaluate.
 
-The response is a proposed structure. Actual fields and values will be finalized after backend and machine learning integration.
+The `synthetic_classifier` reports resemblance to a generated scenario and is not real-world fraud probability or confidence. `/api/models/synthetic-comparison` metrics are for the synthetic test split only. The Isolation Forest output is an anomaly assessment, not a fraud probability. Missing historical inputs produce `NEEDS_MORE_DATA`; FDI reports `INSUFFICIENT_INPUTS` with a null total when its required live inputs are missing.
 
-## 4. Input Validation
-
-The backend should validate the following:
-
-- Product name must not be empty.
-- Current price must be greater than zero.
-- Original price must be greater than zero.
-- Current price should not exceed original price for a standard advertised discount.
-- Historical price data must follow the expected format.
-
-Invalid requests should return an appropriate HTTP error response.
-
-## 5. HTTP Status Codes
-
-| Status Code | Meaning |
-|---|---|
-| 200 | Request processed successfully |
-| 400 | Invalid input data |
-| 422 | Request validation failed |
-| 500 | Internal server error |
-
-## 6. Frontend–Backend Communication
-
-1. The user enters product pricing information in the React frontend.
-2. The frontend sends a POST request to the FastAPI backend.
-3. The backend validates the submitted information.
-4. The analysis component processes the available pricing data.
-5. The backend returns the result in JSON format.
-6. The frontend displays the analysis to the user.
-
-## 7. Important Notes
-
-- The API will initially operate in a local development environment.
-- No live marketplace integration is guaranteed in the initial version.
-- Historical price analysis depends on the availability of sufficient historical observations.
-- Machine learning predictions will be used only after the dataset labels and model have been validated.
-- The final API contract may be updated during integration.
+The production backend reads the local derived store `artifacts/derived/fakedeal_runtime.duckdb`, built from the original dataset splits as described in [`dataset-processing.md`](dataset-processing.md). Dataset and model errors use structured responses. Forecasting uses two baselines, five chronological windows, and requires 180 consecutive observed days; see [`forecasting-methodology.md`](forecasting-methodology.md). Live marketplace access is not implemented.

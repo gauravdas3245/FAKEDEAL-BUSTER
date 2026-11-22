@@ -9,6 +9,7 @@ venv/
 env/
 ENV/
 .pytest_cache/
+.pytest-run/
 .mypy_cache/
 .ruff_cache/
 
@@ -18,12 +19,30 @@ ENV/
 *.model
 models/
 checkpoints/
+!artifacts/ml/**/*.joblib
 
 # Data files (do not upload raw datasets)
 *.csv
 *.parquet
 *.xlsx
 *.jsonl
+!artifacts/rahul_dataset_handoff/p0000001_all_splits.csv
+!artifacts/synthetic/**/*.csv
+
+# Database and query engine files
+*.duckdb
+*.duckdb.wal
+*.db
+*.sqlite
+*.sqlite3
+!artifacts/derived/fakedeal_demo.duckdb
+
+# Archive and compressed files
+*.zip
+*.tar.gz
+*.gz
+*.rar
+*.7z
 
 # Node.js / React
 node_modules/

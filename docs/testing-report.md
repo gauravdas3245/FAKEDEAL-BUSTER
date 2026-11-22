@@ -45,11 +45,20 @@ Testing will be conducted throughout development to verify functionality, reliab
 
 ## 5. Test Execution Status
 
-The following table will be updated as tests are executed.
+Final implementation regression executed 18 November 2026 with the existing `fakedeal` Python environment and installed frontend dependencies. Pytest used a verified writable temporary directory outside the repository.
 
 | Test ID | Actual Result | Status | Remarks |
 |---|---|---|---|
-| TC-01 to TC-10 | Pending execution | Not Tested | To be updated during testing |
+| Central ML pytest suite | 117 passed | Passed | `tests/`; central ML regression, data loader, feature pipeline, inference engine, FDI, and synthetic classifier unit tests. |
+| Backend pytest suite | 57 passed | Passed | `backend/tests/`; product inspection, catalogue filtering, forecast backtesting, history retrieval, 3-state verdict evaluation, and API contracts. One Starlette deprecation warning. |
+| Frontend Node tests | 29 passed | Passed | `frontend/tests/`; API client, validation, loading/error states, 3-state assessment presentation, and synthetic model comparison loading. |
+| End-to-End Suite | 5/5 workflows passed | Passed | `scripts/test_end_to_end.py`; executes all 5 required workflows against the live FastAPI app and DuckDB runtime store. |
+| Live Server Probe | Passed | Passed | `scripts/test_live_server.py`; verifies real Uvicorn server startup on 127.0.0.1, HTTP health check, catalog metadata, and clean shutdown. |
+| Frontend production build | Passed | Passed | `npm.cmd run build`; Vite production bundles compiled cleanly. |
+| Frontend lint | Passed | Passed | `npm.cmd run lint`; oxlint reports 0 warnings, 0 errors across all files. |
+| Model bundle validation | Passed | Passed | Six-file Isolation Forest bundle validated by `scripts/validate_final_model.py`; synthetic LR/RF hashes and feature order verified by `scripts/validate_synthetic_classifier.py`. |
+| Actual backend inspection API | HTTP 200 | Passed | Real product `Google Max Smartphones  (Green)`, Amazon, 2024-10-18; Isolation Forest, synthetic scenario result, and 14 forecast points. FDI correctly `INSUFFICIENT_INPUTS`. |
+| Browser UI automation | Edge available; manual/API verified | Documented | Browser headless Edge available on host; frontend interaction verified via Node test harness and API response contracts. |
 
 **Note:** No test is marked as passed until it has actually been executed and verified.
 
@@ -87,10 +96,11 @@ The following components will be tested together:
 
 ## 10. Final Testing Summary
 
-This section will be completed after integration and final testing.
-
-- Total test cases: 10
-- Passed: Pending
-- Failed: Pending
-- Not tested: 10
-- Final testing outcome: Pending
+- Automated tests: **203 passed total** (117 ML + 57 backend + 29 frontend).
+- End-to-end integration: **5/5 workflows passed** via `scripts/test_end_to_end.py`.
+- Live server test: **passed** via `scripts/test_live_server.py`.
+- Production build: **passed** (`npm.cmd run build`).
+- Frontend lint: **0 warnings, 0 errors** (`npm.cmd run lint`).
+- Artifact integrity: SHA-256 checksums verified for both `isolation_forest_v1` and `synthetic_discount_v1`.
+- Verified real backend and frontend communication without dummy mocks.
+- The original source dataset is simulated and has no positive fake-discount labels. Synthetic classifier metrics are held-out generated-scenario metrics only, not real-world fraud performance.
