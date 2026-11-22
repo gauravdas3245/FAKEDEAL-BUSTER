@@ -27,23 +27,31 @@ app = FastAPI(
 )
 
 # Configure CORS Middleware
+DEFAULT_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
+]
+
 allowed_origins_env = os.getenv("CORS_ALLOWED_ORIGINS", "")
 if allowed_origins_env.strip():
-    allowed_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+    configured_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+    allowed_origins = list(dict.fromkeys(DEFAULT_ALLOWED_ORIGINS + configured_origins))
 else:
-    allowed_origins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:4173",
-        "http://127.0.0.1:4173",
-    ]
+    allowed_origins = DEFAULT_ALLOWED_ORIGINS
+
+# Origin regex is disabled by default to prevent wildcard subdomain escalation with credentials.
+# Operators may provide a strictly validated pattern via CORS_ORIGIN_REGEX if needed.
+origin_regex_env = os.getenv("CORS_ORIGIN_REGEX", "").strip()
+origin_regex = origin_regex_env if origin_regex_env else None
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_origin_regex=os.getenv("CORS_ORIGIN_REGEX", r"https://.*\.vercel\.app"),
+    allow_origin_regex=origin_regex,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

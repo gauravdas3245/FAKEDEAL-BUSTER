@@ -1,0 +1,72 @@
+name: FakeDeal Buster CI
+
+on:
+  push:
+    branches: [main, feature/complete-project-consolidation]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-and-ml:
+    name: Backend & ML Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Central ML Unit Tests (pytest)
+        run: |
+          pytest tests/ -v
+
+      - name: Run Backend REST API Tests (pytest)
+        env:
+          PYTHONPATH: backend
+        run: |
+          pytest backend/tests/ -v
+
+      - name: Validate QA Synthetic Fixture Suite
+        run: |
+          python scripts/generate_qa_fixtures.py --validate-only
+
+      - name: Run End-to-End System Demonstration
+        env:
+          PYTHONPATH: backend
+        run: |
+          python scripts/test_end_to_end.py
+
+  frontend:
+    name: Frontend Tests & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run Frontend Tests (node:test)
+        run: npm test
+
+      - name: Run Frontend Production Build (vite build)
+        run: npm run build
