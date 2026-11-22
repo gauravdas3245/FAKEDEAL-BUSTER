@@ -1,0 +1,203 @@
+{
+  "artifact_version": "synthetic_discount_classifier_v1",
+  "synthetic_only": true,
+  "not_real_world_fraud_detection": true,
+  "feature_names_ordered": [
+    "msrp_to_30d_avg",
+    "ratio_to_30d_avg",
+    "price_volatility_30d",
+    "recent_7d_surge",
+    "advertised_discount_pct",
+    "platform",
+    "category"
+  ],
+  "numeric_features": [
+    "msrp_to_30d_avg",
+    "ratio_to_30d_avg",
+    "price_volatility_30d",
+    "recent_7d_surge",
+    "advertised_discount_pct"
+  ],
+  "categorical_features": [
+    "platform",
+    "category"
+  ],
+  "target_column": "scenario_label",
+  "labels": {
+    "0": "SYNTHETIC_GENUINE_DISCOUNT",
+    "1": "SYNTHETIC_ARTIFICIALLY_INFLATED_DISCOUNT"
+  },
+  "threshold_objective": "Validation recall maximized subject to false-positive rate <= 0.10 on synthetic genuine examples; PR-AUC and precision break ties.",
+  "false_positive_rate_limit": 0.1,
+  "selected_model": "random_forest",
+  "selected_threshold": 0.41000000000000003,
+  "transformed_feature_importance": {
+    "logistic_regression": [
+      {
+        "feature": "numeric__ratio_to_30d_avg",
+        "importance": 2.1592650382753416
+      },
+      {
+        "feature": "numeric__msrp_to_30d_avg",
+        "importance": 1.2129538675488307
+      },
+      {
+        "feature": "numeric__advertised_discount_pct",
+        "importance": 0.12784541240564823
+      },
+      {
+        "feature": "categorical__platform_amazon",
+        "importance": 0.0775570191023551
+      },
+      {
+        "feature": "categorical__category_Books",
+        "importance": 0.06616631217743932
+      },
+      {
+        "feature": "categorical__category_Fashion",
+        "importance": 0.03142683262082907
+      },
+      {
+        "feature": "categorical__platform_walmart",
+        "importance": 0.02927982827777543
+      },
+      {
+        "feature": "categorical__category_Household",
+        "importance": 0.0240366054479059
+      },
+      {
+        "feature": "categorical__category_Appliances",
+        "importance": 0.02236831439411803
+      },
+      {
+        "feature": "categorical__category_Sports",
+        "importance": 0.017980367256656957
+      },
+      {
+        "feature": "categorical__platform_flipkart",
+        "importance": 0.01402752835972373
+      },
+      {
+        "feature": "categorical__platform_bestbuy",
+        "importance": 0.010364598064802675
+      },
+      {
+        "feature": "categorical__category_Electronics",
+        "importance": 0.007838179392610705
+      },
+      {
+        "feature": "numeric__price_volatility_30d",
+        "importance": 0.007311211708468103
+      },
+      {
+        "feature": "numeric__recent_7d_surge",
+        "importance": 0.006568041931237213
+      },
+      {
+        "feature": "categorical__platform_ebay",
+        "importance": 0.003545436417449454
+      },
+      {
+        "feature": "categorical__category_Gaming",
+        "importance": 0.0008872996490754622
+      }
+    ],
+    "random_forest": [
+      {
+        "feature": "numeric__ratio_to_30d_avg",
+        "importance": 0.5654289456555707
+      },
+      {
+        "feature": "numeric__msrp_to_30d_avg",
+        "importance": 0.23028227042201382
+      },
+      {
+        "feature": "numeric__advertised_discount_pct",
+        "importance": 0.15012509395557375
+      },
+      {
+        "feature": "numeric__price_volatility_30d",
+        "importance": 0.02261247178460893
+      },
+      {
+        "feature": "numeric__recent_7d_surge",
+        "importance": 0.01750615065165789
+      },
+      {
+        "feature": "categorical__platform_amazon",
+        "importance": 0.001399884144524467
+      },
+      {
+        "feature": "categorical__platform_ebay",
+        "importance": 0.0013762175849352618
+      },
+      {
+        "feature": "categorical__platform_bestbuy",
+        "importance": 0.0013540650859009543
+      },
+      {
+        "feature": "categorical__category_Electronics",
+        "importance": 0.0013326218780687273
+      },
+      {
+        "feature": "categorical__platform_walmart",
+        "importance": 0.0013264892526172387
+      },
+      {
+        "feature": "categorical__platform_flipkart",
+        "importance": 0.00126463047609576
+      },
+      {
+        "feature": "categorical__category_Gaming",
+        "importance": 0.0011916750767355746
+      },
+      {
+        "feature": "categorical__category_Fashion",
+        "importance": 0.0011729300898937801
+      },
+      {
+        "feature": "categorical__category_Household",
+        "importance": 0.0009743858731246456
+      },
+      {
+        "feature": "categorical__category_Sports",
+        "importance": 0.0009306128063279363
+      },
+      {
+        "feature": "categorical__category_Appliances",
+        "importance": 0.0008826092865877831
+      },
+      {
+        "feature": "categorical__category_Books",
+        "importance": 0.0008389459757629065
+      }
+    ]
+  },
+  "split_counts": {
+    "train": 28000,
+    "validation": 6000,
+    "test": 6000
+  },
+  "class_counts": {
+    "train": {
+      "0": 14000,
+      "1": 14000
+    },
+    "validation": {
+      "0": 3000,
+      "1": 3000
+    },
+    "test": {
+      "0": 3000,
+      "1": 3000
+    }
+  },
+  "random_seed": 20261118,
+  "dataset_manifest_sha256": "be26373385124ef091b5520c2f301d6633ed1fc5d29befb3208f59fae504f848",
+  "random_forest_estimators": 200,
+  "fit_scope": "imputers, one-hot encoders, and scaler fitted only on synthetic training split",
+  "training_environment": {
+    "python": "3.12.16",
+    "scikit_learn": "1.9.1"
+  }
+}

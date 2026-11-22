@@ -1,0 +1,19 @@
+{
+  "feature_names": [
+    "msrp_to_30d_avg",
+    "ratio_to_30d_avg",
+    "price_volatility_30d",
+    "recent_7d_surge"
+  ],
+  "features": {
+    "msrp_to_30d_avg": 2.9003031270388018,
+    "ratio_to_30d_avg": 1.0020503189023022,
+    "price_volatility_30d": 0.16061163503356468,
+    "recent_7d_surge": 0.10005239807271889
+  },
+  "expected_prediction": {
+    "is_anomaly": false,
+    "anomaly_score": -0.20971575806454767,
+    "raw_prediction": 1
+  }
+}

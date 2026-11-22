@@ -1,0 +1,334 @@
+{
+  "evaluation_timestamp_utc": "2026-11-17T14:37:42.726571+00:00",
+  "evaluation_type": "frozen_model_anomaly_detection_only",
+  "dataset_type": "simulated e-commerce price observations; not verified real-world transactions",
+  "artifact_version": "isolation_forest_v1",
+  "test_split_used_for_scoring_only": true,
+  "test_labels_used": false,
+  "test_source_rows_scanned": 2595772,
+  "test_source_invalid_raw_input_rows": 0,
+  "test_rows_emitted_for_scoring": 2595772,
+  "eligible_scored_rows": 2595772,
+  "invalid_engineered_feature_rows": 0,
+  "test_boundaries": {
+    "train": {
+      "rows": 20450474,
+      "min": "2023-01-01 00:00:00",
+      "max": "2024-08-05 00:00:00"
+    },
+    "validation": {
+      "rows": 2560694,
+      "min": "2024-08-06 00:00:00",
+      "max": "2024-10-17 00:00:00"
+    },
+    "test": {
+      "rows": 2595772,
+      "min": "2024-10-18 00:00:00",
+      "max": "2024-12-30 00:00:00"
+    }
+  },
+  "feature_names": [
+    "msrp_to_30d_avg",
+    "ratio_to_30d_avg",
+    "price_volatility_30d",
+    "recent_7d_surge"
+  ],
+  "scoring": {
+    "anomaly_count": 39864,
+    "anomaly_rate": 0.015357280993862327,
+    "score_summary": {
+      "rows": 2595772,
+      "anomaly_count": 39864,
+      "anomaly_rate": 0.015357280993862327,
+      "score_min": -0.25306063545168156,
+      "score_max": 0.12276139418395815,
+      "score_mean": -0.15549385107993807,
+      "score_q05_sample": -0.2331947899045001,
+      "score_q25_sample": -0.20498427404477326,
+      "score_median_sample": -0.16712876584021794,
+      "score_q75_sample": -0.11794434403505116,
+      "score_q95_sample": -0.03925932672772392,
+      "quantile_sample_size": 100000
+    },
+    "by_platform": {
+      "amazon": {
+        "rows": 513264,
+        "anomaly_count": 9009,
+        "anomaly_rate": 0.017552370709810156,
+        "score_min": -0.2527963000181188,
+        "score_max": 0.12276139418395815,
+        "score_mean": -0.14786733151362869,
+        "score_q05_sample": -0.23167126022135923,
+        "score_q25_sample": -0.19561565432925881,
+        "score_median_sample": -0.1554795804815277,
+        "score_q75_sample": -0.10933790059062987,
+        "score_q95_sample": -0.03468687148933738,
+        "quantile_sample_size": 100000
+      },
+      "bestbuy": {
+        "rows": 519258,
+        "anomaly_count": 9184,
+        "anomaly_rate": 0.017686776130555523,
+        "score_min": -0.2523623737574067,
+        "score_max": 0.11204030157198286,
+        "score_mean": -0.14406532804327046,
+        "score_q05_sample": -0.23162929315414532,
+        "score_q25_sample": -0.19232272376574555,
+        "score_median_sample": -0.14871670840838638,
+        "score_q75_sample": -0.10477976099093156,
+        "score_q95_sample": -0.03393044683068139,
+        "quantile_sample_size": 100000
+      },
+      "ebay": {
+        "rows": 521404,
+        "anomaly_count": 6909,
+        "anomaly_rate": 0.013250761405742956,
+        "score_min": -0.2526925014847825,
+        "score_max": 0.1095931551002296,
+        "score_mean": -0.16354839633279683,
+        "score_q05_sample": -0.23323129545770668,
+        "score_q25_sample": -0.20985465627900896,
+        "score_median_sample": -0.17871458948029945,
+        "score_q75_sample": -0.12905349538920666,
+        "score_q95_sample": -0.04459295368756313,
+        "quantile_sample_size": 100000
+      },
+      "flipkart": {
+        "rows": 519628,
+        "anomaly_count": 6853,
+        "anomaly_rate": 0.013188280847067517,
+        "score_min": -0.2524577944935054,
+        "score_max": 0.1125951049919286,
+        "score_mean": -0.167830808713591,
+        "score_q05_sample": -0.23490412628222945,
+        "score_q25_sample": -0.21424420458118582,
+        "score_median_sample": -0.1848439560010145,
+        "score_q75_sample": -0.13433658147970942,
+        "score_q95_sample": -0.04493900786268212,
+        "quantile_sample_size": 100000
+      },
+      "walmart": {
+        "rows": 522218,
+        "anomaly_count": 7909,
+        "anomaly_rate": 0.015145016066087343,
+        "score_min": -0.25306063545168156,
+        "score_max": 0.11164615217176066,
+        "score_mean": -0.15403558885874827,
+        "score_q05_sample": -0.232047958016449,
+        "score_q25_sample": -0.20098421993212373,
+        "score_median_sample": -0.1651858649659903,
+        "score_q75_sample": -0.11678104359359168,
+        "score_q95_sample": -0.04003541278521006,
+        "quantile_sample_size": 100000
+      }
+    },
+    "by_category": {
+      "Appliances": {
+        "rows": 311392,
+        "anomaly_count": 471,
+        "anomaly_rate": 0.0015125629431713083,
+        "score_min": -0.2526925014847825,
+        "score_max": 0.10388846680024433,
+        "score_mean": -0.17112559566330296,
+        "score_q05_sample": -0.23478154574192966,
+        "score_q25_sample": -0.2121207621655667,
+        "score_median_sample": -0.18056188143798674,
+        "score_q75_sample": -0.13786655618811297,
+        "score_q95_sample": -0.07623437409780187,
+        "quantile_sample_size": 100000
+      },
+      "Books": {
+        "rows": 259148,
+        "anomaly_count": 100,
+        "anomaly_rate": 0.0003858798833099233,
+        "score_min": -0.2527963000181188,
+        "score_max": 0.029098784798660904,
+        "score_mean": -0.1755007035598313,
+        "score_q05_sample": -0.23298869083322332,
+        "score_q25_sample": -0.21200768371378909,
+        "score_median_sample": -0.18519360961357445,
+        "score_q75_sample": -0.14462915209089058,
+        "score_q95_sample": -0.08942056516812898,
+        "quantile_sample_size": 100000
+      },
+      "Electronics": {
+        "rows": 649202,
+        "anomaly_count": 4841,
+        "anomaly_rate": 0.007456847021420143,
+        "score_min": -0.25306063545168156,
+        "score_max": 0.09994881741047168,
+        "score_mean": -0.1597331165062015,
+        "score_q05_sample": -0.23457130419603517,
+        "score_q25_sample": -0.20723871333688829,
+        "score_median_sample": -0.16963237163244674,
+        "score_q75_sample": -0.12209076591006532,
+        "score_q95_sample": -0.05153405549146568,
+        "quantile_sample_size": 100000
+      },
+      "Fashion": {
+        "rows": 523550,
+        "anomaly_count": 27390,
+        "anomaly_rate": 0.052315920160443126,
+        "score_min": -0.2524964411826399,
+        "score_max": 0.12276139418395815,
+        "score_mean": -0.12450675250999263,
+        "score_q05_sample": -0.22193169094616477,
+        "score_q25_sample": -0.18094725210943058,
+        "score_median_sample": -0.13429999003859266,
+        "score_q75_sample": -0.0737302558860051,
+        "score_q95_sample": 0.0015130878880431956,
+        "quantile_sample_size": 100000
+      },
+      "Gaming": {
+        "rows": 390202,
+        "anomaly_count": 4533,
+        "anomaly_rate": 0.011617059881804809,
+        "score_min": -0.25254079202567437,
+        "score_max": 0.10838634532152325,
+        "score_mean": -0.15555156225000957,
+        "score_q05_sample": -0.23306731130661965,
+        "score_q25_sample": -0.20475155397340222,
+        "score_median_sample": -0.16661757854754583,
+        "score_q75_sample": -0.11714728064031632,
+        "score_q95_sample": -0.04317366010496772,
+        "quantile_sample_size": 100000
+      },
+      "Household": {
+        "rows": 256188,
+        "anomaly_count": 1222,
+        "anomaly_rate": 0.004769934579293331,
+        "score_min": -0.252635011630644,
+        "score_max": 0.0948462359078821,
+        "score_mean": -0.16520382908846984,
+        "score_q05_sample": -0.23494314514105916,
+        "score_q25_sample": -0.21041720368181135,
+        "score_median_sample": -0.1751682869347034,
+        "score_q75_sample": -0.12989487130108315,
+        "score_q95_sample": -0.060730776237501755,
+        "quantile_sample_size": 100000
+      },
+      "Sports": {
+        "rows": 206090,
+        "anomaly_count": 1307,
+        "anomaly_rate": 0.006341889465767383,
+        "score_min": -0.2524731551137966,
+        "score_max": 0.1088755691013874,
+        "score_mean": -0.15990319159736918,
+        "score_q05_sample": -0.23485119600742932,
+        "score_q25_sample": -0.20733139209251839,
+        "score_median_sample": -0.16957649984408138,
+        "score_q75_sample": -0.12148005047542193,
+        "score_q95_sample": -0.05205366221722556,
+        "quantile_sample_size": 100000
+      }
+    }
+  },
+  "comparison_to_validation": {
+    "validation_anomaly_rate": 0.01185733242628756,
+    "test_anomaly_rate": 0.015357280993862327,
+    "anomaly_rate_delta_percentage_points": 0.3499948567574766,
+    "validation_score_mean": -0.19180512133052913,
+    "test_score_mean": -0.15549385107993807,
+    "score_mean_delta": 0.036311270250591055,
+    "by_platform": {
+      "amazon": {
+        "validation_anomaly_rate": 0.011786825931017049,
+        "test_anomaly_rate": 0.017552370709810156,
+        "delta_percentage_points": 0.5765544778793107
+      },
+      "bestbuy": {
+        "validation_anomaly_rate": 0.011986545395624324,
+        "test_anomaly_rate": 0.017686776130555523,
+        "delta_percentage_points": 0.5700230734931198
+      },
+      "ebay": {
+        "validation_anomaly_rate": 0.011025394763958177,
+        "test_anomaly_rate": 0.013250761405742956,
+        "delta_percentage_points": 0.22253666417847792
+      },
+      "flipkart": {
+        "validation_anomaly_rate": 0.011765371454879577,
+        "test_anomaly_rate": 0.013188280847067517,
+        "delta_percentage_points": 0.14229093921879402
+      },
+      "walmart": {
+        "validation_anomaly_rate": 0.012720295208682335,
+        "test_anomaly_rate": 0.015145016066087343,
+        "delta_percentage_points": 0.2424720857405008
+      }
+    },
+    "by_category": {
+      "Appliances": {
+        "validation_anomaly_rate": 0.0004817959268711912,
+        "test_anomaly_rate": 0.0015125629431713083,
+        "delta_percentage_points": 0.1030767016300117
+      },
+      "Books": {
+        "validation_anomaly_rate": 1.5646636364347575e-05,
+        "test_anomaly_rate": 0.0003858798833099233,
+        "delta_percentage_points": 0.037023324694557574
+      },
+      "Electronics": {
+        "validation_anomaly_rate": 0.003772471265354942,
+        "test_anomaly_rate": 0.007456847021420143,
+        "delta_percentage_points": 0.36843757560652013
+      },
+      "Fashion": {
+        "validation_anomaly_rate": 0.04595769398325185,
+        "test_anomaly_rate": 0.052315920160443126,
+        "delta_percentage_points": 0.6358226177191277
+      },
+      "Gaming": {
+        "validation_anomaly_rate": 0.007471507732594842,
+        "test_anomaly_rate": 0.011617059881804809,
+        "delta_percentage_points": 0.4145552149209967
+      },
+      "Household": {
+        "validation_anomaly_rate": 0.0021643993890616713,
+        "test_anomaly_rate": 0.004769934579293331,
+        "delta_percentage_points": 0.260553519023166
+      },
+      "Sports": {
+        "validation_anomaly_rate": 0.003128304763778559,
+        "test_anomaly_rate": 0.006341889465767383,
+        "delta_percentage_points": 0.32135847019888236
+      }
+    },
+    "interpretation": "Descriptive drift comparison only; validation values do not tune or alter the frozen model or threshold."
+  },
+  "prediction_consistency": {
+    "wrapper_vs_direct_score_mismatches": 0,
+    "wrapper_vs_estimator_flag_mismatches": 0,
+    "wrapper_raw_prediction_mismatches": 0,
+    "flag_vs_positive_wrapper_score_mismatches": 0,
+    "score_orientation": "higher anomaly_score is more anomalous; wrapper score is -decision_function"
+  },
+  "classification_metrics": {
+    "available": false,
+    "accuracy": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "reason": "No verified fake-discount ground truth is available. The candidate fake_discount_flag has zero positives and undocumented generation logic; price_spike_flag is not fake-discount ground truth and was not used."
+  },
+  "runtime_seconds": 170.64935449999757,
+  "duckdb_memory_limit": "1GB",
+  "batch_size": 25000,
+  "quantile_sample_size": 100000,
+  "artifact_checksums_before": {
+    "isolation_forest.joblib": "3127a8bdabc83ed44f67de264c997721b5ced0ae0d02c5f047e3cff6f2c2c777",
+    "preprocessor.json": "c5eb66c0377b5949025a9a36cd7a14a943cbbbbc775ecad51b6cbff2c8f6b053",
+    "metadata.json": "f2b90ac04a80589f2074e2a72604a81a64bd152013f3bb9a1ad056fcebdf4304",
+    "validation_summary.json": "9716e25a98916d390e819b4c86701e2f2a0665145e8cbe2ca47d754778bf3e39",
+    "verification_fixture.json": "3ee757972f92b78c8bd42595123115eb0758c71c07cd37a06d5d4b5e5b1c88f8"
+  },
+  "artifact_checksums_after": {
+    "isolation_forest.joblib": "3127a8bdabc83ed44f67de264c997721b5ced0ae0d02c5f047e3cff6f2c2c777",
+    "preprocessor.json": "c5eb66c0377b5949025a9a36cd7a14a943cbbbbc775ecad51b6cbff2c8f6b053",
+    "metadata.json": "f2b90ac04a80589f2074e2a72604a81a64bd152013f3bb9a1ad056fcebdf4304",
+    "validation_summary.json": "9716e25a98916d390e819b4c86701e2f2a0665145e8cbe2ca47d754778bf3e39",
+    "verification_fixture.json": "3ee757972f92b78c8bd42595123115eb0758c71c07cd37a06d5d4b5e5b1c88f8"
+  },
+  "artifact_checksums_unchanged": true,
+  "test_split_used_for_training_or_threshold_tuning": false
+}

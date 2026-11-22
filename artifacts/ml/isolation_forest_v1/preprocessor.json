@@ -1,0 +1,27 @@
+{
+  "scaler_type": "robust",
+  "feature_names": [
+    "msrp_to_30d_avg",
+    "ratio_to_30d_avg",
+    "price_volatility_30d",
+    "recent_7d_surge"
+  ],
+  "fitted_params": {
+    "msrp_to_30d_avg": {
+      "center": 2.1108172654719084,
+      "scale": 1.16352252457849
+    },
+    "ratio_to_30d_avg": {
+      "center": 0.9930556003161166,
+      "scale": 0.1893135367365606
+    },
+    "price_volatility_30d": {
+      "center": 0.09642657204289873,
+      "scale": 0.07720692658212547
+    },
+    "recent_7d_surge": {
+      "center": 0.05699552732493941,
+      "scale": 0.1357924451639868
+    }
+  }
+}
