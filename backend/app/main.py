@@ -34,6 +34,7 @@ DEFAULT_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:4173",
     "http://127.0.0.1:4173",
+    "https://fakedeal-buster.vercel.app",
 ]
 
 allowed_origins_env = os.getenv("CORS_ALLOWED_ORIGINS", "")
