@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Backend REST API Tests (pytest)
         env:
-          PYTHONPATH: backend
+          PYTHONPATH: .:backend
         run: |
           pytest backend/tests/ -v
 
@@ -41,7 +41,7 @@ jobs:
 
       - name: Run End-to-End System Demonstration
         env:
-          PYTHONPATH: backend
+          PYTHONPATH: .:backend
         run: |
           python scripts/test_end_to_end.py
 
