@@ -1,0 +1,195 @@
+{
+  "dataset_root": "C:\\end sem project\\archive (5)",
+  "source_files": {
+    "train": {
+      "path": "C:\\end sem project\\archive (5)\\data\\splits\\ecommerce_train.csv",
+      "size_bytes": 6609097454,
+      "modified_ns": 1794817677215336500,
+      "unchanged_size_and_mtime": true
+    },
+    "val": {
+      "path": "C:\\end sem project\\archive (5)\\data\\splits\\ecommerce_val.csv",
+      "size_bytes": 825896977,
+      "modified_ns": 1794817683062710700,
+      "unchanged_size_and_mtime": true
+    },
+    "test": {
+      "path": "C:\\end sem project\\archive (5)\\data\\splits\\ecommerce_test.csv",
+      "size_bytes": 831979063,
+      "modified_ns": 1794817624556274500,
+      "unchanged_size_and_mtime": true
+    }
+  },
+  "split_stats": {
+    "train": {
+      "total_rows": 20450474,
+      "unique_product_ids": 9980,
+      "unique_platforms": 5,
+      "unique_product_platforms": 35078,
+      "min_timestamp": "2023-01-01 00:00:00",
+      "max_timestamp": "2024-08-05 00:00:00",
+      "price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "original_price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "timestamp_format_mismatch": 0
+    },
+    "val": {
+      "total_rows": 2560694,
+      "unique_product_ids": 9980,
+      "unique_platforms": 5,
+      "unique_product_platforms": 35078,
+      "min_timestamp": "2024-08-06 00:00:00",
+      "max_timestamp": "2024-10-17 00:00:00",
+      "price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "original_price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "timestamp_format_mismatch": 0
+    },
+    "test": {
+      "total_rows": 2595772,
+      "unique_product_ids": 9980,
+      "unique_platforms": 5,
+      "unique_product_platforms": 35078,
+      "min_timestamp": "2024-10-18 00:00:00",
+      "max_timestamp": "2024-12-30 00:00:00",
+      "price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "original_price": {
+        "null": 0,
+        "zero": 0,
+        "negative": 0,
+        "non_finite": 0
+      },
+      "timestamp_format_mismatch": 0
+    }
+  },
+  "duplicate_keys": {
+    "train": {
+      "duplicate_keys": 0,
+      "excess_records": 0
+    },
+    "val": {
+      "duplicate_keys": 0,
+      "excess_records": 0
+    },
+    "test": {
+      "duplicate_keys": 0,
+      "excess_records": 0
+    }
+  },
+  "p0000001_platforms": [
+    "amazon",
+    "bestbuy",
+    "ebay",
+    "flipkart"
+  ],
+  "p0000001_export": {
+    "path": "C:\\end sem project\\FAKEDEAL-BUSTER\\artifacts\\rahul_dataset_handoff\\p0000001_all_splits.csv",
+    "size_bytes": 964720,
+    "records": 2920,
+    "records_by_split": {
+      "test": 296,
+      "train": 2332,
+      "validation": 292
+    },
+    "source_export_except_all_rows": 0,
+    "export_source_except_all_rows": 0,
+    "verified_exact_match": true
+  },
+  "schema_columns": [
+    "product_id",
+    "title",
+    "brand",
+    "category",
+    "subcategory",
+    "platform",
+    "timestamp",
+    "year",
+    "month",
+    "day",
+    "dayofweek",
+    "price",
+    "original_price",
+    "discount_pct",
+    "stock_status",
+    "avg_rating",
+    "review_count",
+    "is_flagship",
+    "launch_year",
+    "asin",
+    "price_change_abs",
+    "price_change_pct",
+    "price_7d_avg",
+    "price_30d_avg",
+    "price_7d_std",
+    "price_30d_std",
+    "price_7d_min",
+    "price_30d_min",
+    "price_7d_max",
+    "price_30d_max",
+    "price_52w_min",
+    "price_52w_max",
+    "price_volatility_30d",
+    "discount_vs_30d_avg",
+    "is_all_time_low",
+    "is_all_time_high",
+    "popularity_score",
+    "fake_discount_flag",
+    "price_spike_flag",
+    "is_black_friday_week",
+    "is_holiday_season",
+    "is_weekend",
+    "value_score",
+    "target_price_7d",
+    "target_price_30d",
+    "target_price_direction_7d"
+  ],
+  "timestamp_raw_sample": [
+    "2023-01-01T00:00:00",
+    "2023-01-02T00:00:00",
+    "2023-01-03T00:00:00",
+    "2023-01-04T00:00:00",
+    "2023-01-05T00:00:00"
+  ],
+  "all_originals_unchanged_size_and_mtime": true,
+  "outputs": {
+    "p0000001_all_splits.csv": {
+      "path": "C:\\end sem project\\FAKEDEAL-BUSTER\\artifacts\\rahul_dataset_handoff\\p0000001_all_splits.csv",
+      "size_bytes": 964720
+    },
+    "schema_report.md": {
+      "path": "C:\\end sem project\\FAKEDEAL-BUSTER\\artifacts\\rahul_dataset_handoff\\schema_report.md",
+      "size_bytes": 3251
+    },
+    "quality_audit.md": {
+      "path": "C:\\end sem project\\FAKEDEAL-BUSTER\\artifacts\\rahul_dataset_handoff\\quality_audit.md",
+      "size_bytes": 6235
+    },
+    "README.md": {
+      "path": "C:\\end sem project\\FAKEDEAL-BUSTER\\artifacts\\rahul_dataset_handoff\\README.md",
+      "size_bytes": 4264
+    }
+  }
+}

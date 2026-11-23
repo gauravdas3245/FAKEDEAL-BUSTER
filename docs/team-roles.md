@@ -1,79 +1,80 @@
-# FakeDeal Buster – Team Roles and Responsibilities
+# FakeDeal Buster — Team Roles and Responsibilities
 
-## 1. Project Information
+## 1. Academic & Institutional Information
 
-- **Project Name:** FakeDeal Buster
+- **Project Title:** FakeDeal Buster — Sale-Day Artificial Discount & Price Scam Detector
 - **Institution:** Scholar Institute of Technology and Management (SITM), Guwahati
-- **Course:** Bachelor of Computer Applications (BCA), Semester I
-- **Group:** B
-- **Faculty Mentor:** Mr. Nitish Kr. Sarma
-- **Project Type:** Machine Learning-Based Web Application
+- **Department:** Department of Computer Science & Engineering
+- **Programme:** Bachelor of Computer Applications (BCA)
+- **Group:** Group B
+- **Faculty Mentor:** Prof. Nitish Kumar Sarma
+- **Project Type:** Machine Learning-Based Web Application & E-Commerce Pricing Anomaly Detection Prototype
 
-## 2. Team Members and Responsibilities
+---
+
+## 2. Team Members, Student IDs & Core Responsibilities
+
+> [!IMPORTANT]
+> The identification numbers listed below are **Student IDs**, NOT University Roll Numbers. University Roll Number fields in official examination records remain in their blank, unassigned state per institutional instructions.
 
 ### 1. Gaurav Das
-**Role:** Team Leader, ML Developer and GitHub Maintainer
-
-**Responsibilities:**
-- Coordinate the overall project development.
-- Inspect and analyse the approved dataset.
-- Develop and evaluate machine learning models.
-- Integrate the trained ML model with the backend.
-- Maintain the central GitHub repository.
-- Review and merge approved Pull Requests.
-- Track team progress and resolve technical issues.
+- **Student ID:** 2681000390
+- **Role:** Team Leader, Machine Learning Lead & GitHub Maintainer
+- **Key Responsibilities:**
+  - Coordinate overall project architecture, milestones, and cross-functional integration.
+  - Formulate and train the central Isolation Forest anomaly detection model (`isolation_forest_v1`).
+  - Implement feature engineering pipelines (`msrp_to_30d_avg`, `ratio_to_30d_avg`, `price_volatility_30d`, `recent_7d_surge`).
+  - Design and evaluate the supervised synthetic scenario experiment (Logistic Regression vs. Random Forest on 40,000 scenarios).
+  - Implement conditional 14-day chronological price forecasting with rolling-origin backtesting.
+  - Maintain the central GitHub repository (`gauravdas3245/FAKEDEAL-BUSTER`), review pull requests, and manage branches and releases.
 
 ### 2. Rahul Amin
-**Role:** Backend Developer
+- **Student ID:** 2681012412
+- **Role:** Backend & API Engineer
+- **Key Responsibilities:**
+  - Architect and develop the RESTful backend using Python and FastAPI.
+  - Create and document all API endpoints (`/api/catalog`, `/api/inspect`, `/api/forecast`, `/api/models/synthetic-comparison`, `/health`).
+  - Implement robust input validation (Pydantic v2 schemas) and structured HTTP error responses (404, 409, 422, 500, 503).
+  - Develop DuckDB query services for sub-millisecond historical price retrieval across 25.6M records.
+  - Implement CORS middleware and multi-database fallback resolution (Runtime DB -> Demo DB -> CSV Fixture).
+  - Author and maintain the 57-test automated backend test suite (`backend/tests/`).
 
-**Responsibilities:**
-- Develop the backend using Python and FastAPI.
-- Create and manage REST API endpoints.
-- Handle input validation and backend processing.
-- Integrate the machine learning model into the backend.
-- Coordinate API requirements with the frontend developer.
-
-### 3. Lakhyajyoti Phukan
-**Role:** Data Preparation Analyst
-
-**Responsibilities:**
-- Inspect the approved e-commerce dataset.
-- Perform data cleaning and preprocessing.
-- Identify relevant features for analysis.
-- Prepare data for machine learning.
-- Report dataset quality issues and findings.
+### 3. Lakhyajyoti Phukon
+- **Student ID:** 2681000002
+- **Role:** Data Preprocessing Analyst & QA Data Engineer
+- **Key Responsibilities:**
+  - Perform empirical census and statistical auditing of the 25,606,940-row Kaggle e-commerce price dataset.
+  - Author the comprehensive 46-column dataset data dictionary and 59-column pipeline feature specification.
+  - Formulate the 10 master synthetic QA scenarios (309 records) in `tests/fixtures/qa_scenarios.json`.
+  - Author `scripts/generate_qa_fixtures.py` with deterministic validation checks (Checks 1 to 10).
+  - Document manual QA checklists, stream isolation protocols, and provisional FDI (Fake Discount Indicator) scoring.
 
 ### 4. Saniya Begum
-**Role:** Frontend Developer
-
-**Responsibilities:**
-- Develop the user interface using React.js.
-- Create product input forms and result display components.
-- Implement frontend validation.
-- Connect the frontend with the backend API.
-- Maintain a user-friendly application interface.
+- **Student ID:** 2681000003
+- **Role:** Frontend UI/UX Developer
+- **Key Responsibilities:**
+  - Design and build the single-page web user interface using React 19 and Vite.
+  - Develop the interactive Product Inspector component with real-time search, category filtering, and date selection.
+  - Implement responsive data visualizations: SVG historical price charts, 14-day forecast bands, and cross-platform comparisons.
+  - Create the Model Comparison View displaying side-by-side benchmark tables, ROC curves, and confusion matrices.
+  - Author the 29-test frontend test suite (`frontend/tests/`) covering API mapping, form validation, and state handling.
 
 ### 5. Myusha Chakma
-**Role:** Testing and Integration Coordinator
+- **Student ID:** 2681000383
+- **Role:** Testing & Integration Coordinator
+- **Key Responsibilities:**
+  - Coordinate system-level quality assurance and full-stack integration verification.
+  - Design and execute end-to-end integration workflows (`scripts/test_end_to_end.py`).
+  - Verify error boundary handling across UI, API, and analytical engines.
+  - Validate browser compatibility, responsive layouts, and accessibility standards.
+  - Maintain the consolidated QA verification log and audit testing deliverables.
 
-**Responsibilities:**
-- Coordinate application testing.
-- Check frontend and backend integration.
-- Test major application features and user workflows.
-- Identify and report bugs or unexpected behaviour.
-- Verify fixes and maintain a record of testing results.
+---
 
-## 3. Team Collaboration Workflow
+## 3. Team Collaboration & Git Workflow
 
-1. Each member works on their assigned responsibilities.
-2. Team members use their own forks of the central GitHub repository for development.
-3. Changes are submitted to the central repository through Pull Requests.
-4. The Team Leader reviews contributions before merging them into the main branch.
-5. The Testing and Integration Coordinator coordinates testing after integration.
-6. All members communicate progress and report blockers regularly.
-
-## 4. Project Management
-
-The Team Leader is responsible for overall project coordination, task distribution, progress tracking, technical integration and central repository maintenance.
-
-Every team member is responsible for completing assigned tasks within the agreed development timeline and maintaining communication with the team.
+1. **Central Repository:** Maintained by Team Leader at `https://github.com/gauravdas3245/FAKEDEAL-BUSTER`.
+2. **Feature Branching:** All individual contributions are developed on designated feature branches (e.g., `feature/data-preparation-qa`, `feature/complete-project-consolidation`).
+3. **Pull Request Workflow:** Team members fork or branch, implement changes, run test suites locally, and submit Pull Requests for review.
+4. **Code Quality Gates:** No pull request is merged without 100% test pass rate across ML (117 tests), Backend (57 tests), Frontend (29 tests), and QA fixtures (10 checks).
+5. **Direct Commit Policy:** Direct unreviewed commits to the central `main` branch are restricted. All merges are performed by the Team Leader with preserved author attribution.

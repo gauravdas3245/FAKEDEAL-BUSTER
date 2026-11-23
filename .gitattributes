@@ -1,0 +1,12 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly preserve CRLF line endings for ML artifact bundles to maintain cryptographic checksum integrity
+artifacts/ml/** text eol=crlf
+
+# Binary file declarations
+*.duckdb binary
+*.joblib binary
+*.png binary
+*.ico binary
+*.svg text

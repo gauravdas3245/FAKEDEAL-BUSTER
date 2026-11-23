@@ -1,0 +1,112 @@
+{
+  "dataset_version": "synthetic_discount_scenarios_v1",
+  "synthetic_only": true,
+  "real_world_fraud_labels": false,
+  "label_definition": {
+    "0": "SYNTHETIC_GENUINE_DISCOUNT: current price is generated from observed below-average ratios with an observed discount magnitude.",
+    "1": "SYNTHETIC_ARTIFICIALLY_INFLATED_DISCOUNT: current price remains near its observed historical baseline while advertised reference price is inflated by a documented generator factor.",
+    "not_ground_truth": "Labels denote assigned generator scenarios only; they are not verified fraud or claims about real listings."
+  },
+  "source": {
+    "original_train_split": "C:\\end sem project\\archive (5)\\data\\splits\\ecommerce_train.csv",
+    "reference_profile_rows": 60000,
+    "sampling": "DuckDB reservoir sample of the original chronological training split; valid observed price/rolling feature fields only; no IDs or target/future-label columns selected.",
+    "sampled_numeric_ranges": {
+      "msrp_to_30d_avg": {
+        "min": 0.9455759654936965,
+        "p05": 1.0693284631721085,
+        "median": 2.0906033147049476,
+        "p95": 3.244713628309559,
+        "max": 3.9774409995372513
+      },
+      "ratio_to_30d_avg": {
+        "min": 0.21816827997021596,
+        "p05": 0.7134042820914881,
+        "median": 0.9930755891542868,
+        "p95": 1.2406584100894582,
+        "max": 1.846704092720029
+      },
+      "price_volatility_30d": {
+        "min": 0.0,
+        "p05": 0.029847661144679637,
+        "median": 0.095896700962984,
+        "p95": 0.23525513912719506,
+        "max": 0.6213531967721911
+      },
+      "recent_7d_surge": {
+        "min": 0.0,
+        "p05": 0.0,
+        "median": 0.05524567684811346,
+        "p95": 0.2896747672548313,
+        "max": 0.8646153846153847
+      },
+      "advertised_discount_pct": {
+        "min": 0.0999999999999786,
+        "p05": 5.842694404241689,
+        "median": 52.9690848377908,
+        "p95": 70.74555463622043,
+        "max": 83.27987169206096
+      }
+    },
+    "platforms": [
+      "amazon",
+      "bestbuy",
+      "ebay",
+      "flipkart",
+      "walmart"
+    ],
+    "categories": [
+      "Appliances",
+      "Books",
+      "Electronics",
+      "Fashion",
+      "Gaming",
+      "Household",
+      "Sports"
+    ]
+  },
+  "generation": {
+    "row_count": 40000,
+    "seed": 20261118,
+    "class_balance": "balanced by generator design",
+    "source_profile_reuse": "none; each synthetic row receives a distinct sampled source profile before split assignment",
+    "generator_version": "synthetic_discount_scenarios_v1",
+    "feature_names": [
+      "msrp_to_30d_avg",
+      "ratio_to_30d_avg",
+      "price_volatility_30d",
+      "recent_7d_surge",
+      "advertised_discount_pct",
+      "platform",
+      "category"
+    ],
+    "target_column": "scenario_label",
+    "split_method": "stratified random split over independent IID generated offers; 70/15/15"
+  },
+  "splits": {
+    "train.csv": {
+      "rows": 28000,
+      "sha256": "0dead5fc394c10401a8fd2386d0da2e39cfb2e31c0322338a877eb2790703f8b",
+      "class_counts": {
+        "0": 14000,
+        "1": 14000
+      }
+    },
+    "validation.csv": {
+      "rows": 6000,
+      "sha256": "f87cadf3e7b1789966e4ab1c4ed4fbe8b6b9a101249a073187b3e731919658f2",
+      "class_counts": {
+        "0": 3000,
+        "1": 3000
+      }
+    },
+    "test.csv": {
+      "rows": 6000,
+      "sha256": "9c731a727854c7c53a06ac929398b57a93568453837bf6c60b2104c4cfd33e90",
+      "class_counts": {
+        "0": 3000,
+        "1": 3000
+      }
+    }
+  }
+}

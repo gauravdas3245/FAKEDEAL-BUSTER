@@ -1,0 +1,407 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FakeDeal Buster API",
+    "description": "Backend API for detecting potentially misleading e-commerce discounts.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "Root",
+        "description": "Root endpoint welcoming users and indicating server status.",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "Health Check",
+        "description": "Health check endpoint for service monitoring.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/analyze": {
+      "post": {
+        "tags": [
+          "Analysis"
+        ],
+        "summary": "Analyze Product",
+        "description": "Analyzes an e-commerce product discount using historical price patterns.\nComputes rolling features, checks data sufficiency, and returns risk assessments.",
+        "operationId": "analyze_product_api_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful analysis (including NEEDS_MORE_DATA)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product or platform records not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflicting duplicate historical records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "ML service unavailable (awaiting model artifact)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalyzeRequest": {
+        "properties": {
+          "product_name": {
+            "type": "string",
+            "title": "Product Name",
+            "description": "The advertised name or title of the product."
+          },
+          "platform": {
+            "type": "string",
+            "title": "Platform",
+            "description": "E-commerce platform name (e.g. 'amazon', 'flipkart', 'bestbuy', 'ebay')."
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "description": "Product category (e.g. 'Electronics', 'Smartphones')."
+          },
+          "original_price": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Original Price",
+            "description": "Advertised original / reference price (MSRP). Must be strictly positive."
+          },
+          "current_price": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Current Price",
+            "description": "Current selling / discounted price. Must be strictly positive."
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id",
+            "description": "Identifier used for historical price lookup."
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "title": "As Of",
+            "description": "Analysis cutoff timestamp in ISO 8601 format (YYYY-MM-DDTHH:MM:SS)."
+          },
+          "seller_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seller Name",
+            "description": "Optional name of the merchant / seller."
+          },
+          "seller_rating": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seller Rating",
+            "description": "Optional rating of the seller."
+          },
+          "product_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Url",
+            "description": "Optional direct URL to the product page."
+          }
+        },
+        "type": "object",
+        "required": [
+          "product_name",
+          "platform",
+          "category",
+          "original_price",
+          "current_price",
+          "product_id",
+          "as_of"
+        ],
+        "title": "AnalyzeRequest",
+        "description": "Request schema for POST /api/analyze.\nMatches the specification in API_CONTRACT.md."
+      },
+      "AnalyzeResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "description": "Indicates successful request processing.",
+            "default": true
+          },
+          "verdict": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verdict",
+            "description": "Risk level: LOW, MODERATE, HIGH, CRITICAL; null in NEEDS_MORE_DATA state."
+          },
+          "fdi_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fdi Score",
+            "description": "Indicative Fake Discount Index score (0-100); null in NEEDS_MORE_DATA state."
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence",
+            "description": "Confidence score; null in initial version per API contract."
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation",
+            "description": "Human-readable explanation of the assessment."
+          },
+          "original_price": {
+            "type": "number",
+            "title": "Original Price",
+            "description": "Submitted reference / original price."
+          },
+          "current_price": {
+            "type": "number",
+            "title": "Current Price",
+            "description": "Submitted current selling price."
+          },
+          "discount_percentage": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discount Percentage",
+            "description": "Calculated discount percentage."
+          },
+          "forecast_status": {
+            "type": "string",
+            "title": "Forecast Status",
+            "description": "Forecast availability status (e.g. 'AVAILABLE', 'INSUFFICIENT_HISTORY').",
+            "default": "INSUFFICIENT_HISTORY"
+          },
+          "forecast": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ForecastData"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional 14-day price forecast, or null when unavailable."
+          }
+        },
+        "type": "object",
+        "required": [
+          "explanation",
+          "original_price",
+          "current_price"
+        ],
+        "title": "AnalyzeResponse",
+        "description": "Standard analysis response schema for POST /api/analyze.\nMatches the specification in API_CONTRACT.md."
+      },
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "Machine-readable error code (e.g. VALIDATION_ERROR)."
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable error explanation."
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorDetail",
+        "description": "Error information payload."
+      },
+      "ErrorResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "description": "Always false for error responses.",
+            "default": false
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail",
+            "description": "Detailed error information."
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "description": "Consistent API error response structure."
+      },
+      "ForecastData": {
+        "properties": {
+          "horizon_days": {
+            "type": "integer",
+            "title": "Horizon Days",
+            "description": "Number of days in forecast horizon.",
+            "default": 14
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/ForecastPoint"
+            },
+            "type": "array",
+            "title": "Points",
+            "description": "Daily predicted price points."
+          }
+        },
+        "type": "object",
+        "title": "ForecastData",
+        "description": "Price forecast over a future horizon."
+      },
+      "ForecastPoint": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "description": "Forecast date in YYYY-MM-DD format."
+          },
+          "predicted_price": {
+            "type": "number",
+            "title": "Predicted Price",
+            "description": "Predicted price value."
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "predicted_price"
+        ],
+        "title": "ForecastPoint",
+        "description": "A single daily price forecast point."
+      }
+    }
+  }
+}
