@@ -22,6 +22,21 @@ def test_cors_local_dev_origin_accepted():
     assert response.headers.get("access-control-allow-credentials") == "true"
 
 
+def test_cors_production_vercel_origin_accepted():
+    """Verify production Vercel frontend origin is accepted with credentials."""
+    client = TestClient(app)
+    response = client.options(
+        "/api/health",
+        headers={
+            "Origin": "https://fakedeal-buster.vercel.app",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == "https://fakedeal-buster.vercel.app"
+    assert response.headers.get("access-control-allow-credentials") == "true"
+
+
 def test_cors_local_ip_origin_accepted():
     """Verify 127.0.0.1 loopback origin is accepted with credentials."""
     client = TestClient(app)

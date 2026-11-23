@@ -16,6 +16,6 @@ services:
       - key: FAKEDEAL_DATABASE_PATH
         value: artifacts/derived/fakedeal_demo.duckdb
       - key: CORS_ALLOWED_ORIGINS
-        value: "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000"
+        value: "https://fakedeal-buster.vercel.app,http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000"
       - key: CORS_ORIGIN_REGEX
         value: ""
